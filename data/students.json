@@ -15,10 +15,16 @@
         "Phonics": { "mastery": 0, "level": "review" },
         "Spelling": { "mastery": 0, "level": "review" },
         "Science": { "mastery": 0, "level": "review" },
-        "Social Studies": { "mastery": 0, "level": "review" },
-        "Art": { "mastery": 0, "level": "current" },
-        "Physical Education": { "mastery": 0, "level": "current" },
-        "Life Skills": { "mastery": 0, "level": "current" }
+        "Social Studies": { "mastery": 0, "level": "review" }
+      },
+      "electives": {
+        "Art": { "enrolled": false, "course": "", "mastery": 0 },
+        "Music": { "enrolled": false, "course": "", "mastery": 0 },
+        "Physical Education": { "enrolled": false, "course": "", "mastery": 0 },
+        "Foreign Language": { "enrolled": false, "course": "", "mastery": 0 },
+        "Life Skills": { "enrolled": false, "course": "", "mastery": 0 },
+        "Technology": { "enrolled": false, "course": "", "mastery": 0 },
+        "Farm & Agriculture": { "enrolled": false, "course": "", "mastery": 0 }
       },
       "assessmentStatus": {
         "grade-k": "pending",
@@ -40,10 +46,16 @@
         "Writing": { "mastery": 0, "level": "review" },
         "Spelling": { "mastery": 0, "level": "review" },
         "Science": { "mastery": 0, "level": "review" },
-        "Social Studies": { "mastery": 0, "level": "review" },
-        "Art": { "mastery": 0, "level": "current" },
-        "Physical Education": { "mastery": 0, "level": "current" },
-        "Life Skills": { "mastery": 0, "level": "current" }
+        "Social Studies": { "mastery": 0, "level": "review" }
+      },
+      "electives": {
+        "Art": { "enrolled": false, "course": "", "mastery": 0 },
+        "Music": { "enrolled": false, "course": "", "mastery": 0 },
+        "Physical Education": { "enrolled": false, "course": "", "mastery": 0 },
+        "Foreign Language": { "enrolled": false, "course": "", "mastery": 0 },
+        "Life Skills": { "enrolled": false, "course": "", "mastery": 0 },
+        "Technology": { "enrolled": false, "course": "", "mastery": 0 },
+        "Farm & Agriculture": { "enrolled": false, "course": "", "mastery": 0 }
       },
       "assessmentStatus": {
         "grade-3": "pending",

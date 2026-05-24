@@ -179,6 +179,7 @@ function assignmentRowHtml(a) {
 // Students detail page
 async function loadStudentDetail() {
   students = await api('/students');
+  const electiveCategories = await api('/students/electives/categories');
 
   document.getElementById('students-detail').innerHTML = students.map(s => {
     const subjectValues = Object.values(s.subjects);
@@ -210,6 +211,51 @@ async function loadStudentDetail() {
       `;
     }).join('');
 
+    const electiveRows = electiveCategories.map(cat => {
+      const saved = s.electives?.[cat.name] || { enrolled: false, course: '', mastery: 0 };
+      const optionItems = cat.courses.map(c =>
+        `<option value="${h(c)}" ${saved.course === c ? 'selected' : ''}>${h(c)}</option>`
+      ).join('');
+      const selectId = `elective-${h(s.id)}-${h(cat.name.replace(/\s+/g, '-'))}`;
+      const toggleId = `toggle-${h(s.id)}-${h(cat.name.replace(/\s+/g, '-'))}`;
+
+      return `
+        <div class="elective-row ${saved.enrolled ? 'enrolled' : ''}" id="erow-${h(s.id)}-${h(cat.name.replace(/\s+/g, '-'))}">
+          <div class="elective-icon">${h(cat.icon)}</div>
+          <div class="elective-info">
+            <div class="elective-name">${h(cat.name)}</div>
+            <div class="elective-course">
+              <select class="form-select" id="${selectId}"
+                style="padding:4px 8px;font-size:12px;${saved.enrolled ? '' : 'display:none'}"
+                data-sid="${h(s.id)}" data-cat="${h(cat.name)}"
+                onchange="saveElective('${h(s.id)}','${h(cat.name)}', this)">
+                <option value="">— Select a course —</option>
+                ${optionItems}
+              </select>
+              ${saved.enrolled && saved.course
+                ? ''
+                : `<span class="elective-placeholder" id="ep-${h(s.id)}-${h(cat.name.replace(/\s+/g, '-'))}" style="${saved.enrolled ? 'display:none' : ''}">Not enrolled</span>`
+              }
+            </div>
+          </div>
+          <div class="elective-controls">
+            ${saved.enrolled && saved.mastery > 0
+              ? `<span class="badge ${getBadgeClass(saved.mastery)}">${saved.mastery}%</span>`
+              : ''}
+            <label class="toggle-switch">
+              <input type="checkbox" id="${toggleId}"
+                ${saved.enrolled ? 'checked' : ''}
+                data-sid="${h(s.id)}" data-cat="${h(cat.name)}"
+                onchange="toggleElective('${h(s.id)}','${h(cat.name)}',this)">
+              <span class="toggle-track"></span>
+            </label>
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    const enrolledCount = electiveCategories.filter(cat => s.electives?.[cat.name]?.enrolled).length;
+
     return `
       <div class="card">
         <div class="student-header">
@@ -224,13 +270,64 @@ async function loadStudentDetail() {
           <div class="mastery-label"><span>Overall Mastery</span><span>${avg}% — ${getMasteryLabel(avg)}</span></div>
           ${masteryBarHtml(avg)}
         </div>
-        <div class="section-title mb-4">Subject Mastery</div>
-        ${subjectBars}
-        <div class="section-title mt-6 mb-4">Assessment Status</div>
-        ${assessmentRows}
+
+        <div class="tab-bar">
+          <button class="tab-btn active" onclick="switchTab(this,'tab-core-${h(s.id)}')">Core Subjects</button>
+          <button class="tab-btn" onclick="switchTab(this,'tab-electives-${h(s.id)}')">Electives <span style="font-size:11px;color:var(--text-muted)">(${enrolledCount} enrolled)</span></button>
+          <button class="tab-btn" onclick="switchTab(this,'tab-assessments-${h(s.id)}')">Assessments</button>
+        </div>
+
+        <div class="tab-panel active" id="tab-core-${h(s.id)}">
+          ${subjectBars}
+        </div>
+
+        <div class="tab-panel" id="tab-electives-${h(s.id)}">
+          <p class="text-muted text-sm mb-4">Toggle a subject on to enroll, then select a specific course from the dropdown.</p>
+          ${electiveRows}
+        </div>
+
+        <div class="tab-panel" id="tab-assessments-${h(s.id)}">
+          ${assessmentRows}
+        </div>
       </div>
     `;
   }).join('');
+}
+
+function switchTab(btn, panelId) {
+  const card = btn.closest('.card');
+  card.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  card.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(panelId).classList.add('active');
+}
+
+async function toggleElective(studentId, category, checkbox) {
+  const enrolled = checkbox.checked;
+  const slug = category.replace(/\s+/g, '-');
+  const row = document.getElementById(`erow-${studentId}-${slug}`);
+  const select = document.getElementById(`elective-${studentId}-${slug}`);
+  const placeholder = document.getElementById(`ep-${studentId}-${slug}`);
+
+  if (row) row.classList.toggle('enrolled', enrolled);
+  if (select) select.style.display = enrolled ? '' : 'none';
+  if (placeholder) placeholder.style.display = enrolled ? 'none' : '';
+
+  const course = enrolled ? (select?.value || '') : '';
+  await api(`/students/${encodeURIComponent(studentId)}/electives`, {
+    method: 'PUT',
+    body: JSON.stringify({ category, enrolled, course })
+  });
+  students = await api('/students');
+}
+
+async function saveElective(studentId, category, select) {
+  const course = select.value;
+  await api(`/students/${encodeURIComponent(studentId)}/electives`, {
+    method: 'PUT',
+    body: JSON.stringify({ category, enrolled: true, course })
+  });
+  students = await api('/students');
 }
 
 // Assignments

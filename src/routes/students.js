@@ -38,4 +38,29 @@ router.put('/:id/mastery', (req, res) => {
   res.json(data.students[idx]);
 });
 
+// GET elective categories
+router.get('/electives/categories', (req, res) => {
+  const data = read('electives.json');
+  res.json(data.categories);
+});
+
+// PUT save a student's elective enrollment + course selection
+router.put('/:id/electives', (req, res) => {
+  const { category, enrolled, course } = req.body;
+  const data = read('students.json');
+  const idx = data.students.findIndex(s => s.id === req.params.id);
+  if (idx === -1) return res.status(404).json({ error: 'Student not found' });
+
+  if (!data.students[idx].electives) data.students[idx].electives = {};
+  data.students[idx].electives[category] = {
+    enrolled,
+    course: enrolled ? course : '',
+    mastery: data.students[idx].electives[category]?.mastery || 0
+  };
+
+  write('students.json', data);
+  syncStudentNote(data.students[idx]);
+  res.json(data.students[idx]);
+});
+
 module.exports = router;

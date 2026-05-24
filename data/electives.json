@@ -1,0 +1,90 @@
+{
+  "categories": [
+    {
+      "name": "Art",
+      "icon": "🎨",
+      "courses": [
+        "Drawing & Sketching",
+        "Painting & Watercolor",
+        "Pottery & Sculpture",
+        "Photography",
+        "Mixed Media & Collage",
+        "Art History"
+      ]
+    },
+    {
+      "name": "Music",
+      "icon": "🎵",
+      "courses": [
+        "Piano",
+        "Guitar",
+        "Choir & Singing",
+        "Music Theory",
+        "Drums & Percussion",
+        "Ukulele",
+        "Music Appreciation"
+      ]
+    },
+    {
+      "name": "Physical Education",
+      "icon": "⚽",
+      "courses": [
+        "Outdoor & Nature Activities",
+        "Team Sports",
+        "Yoga & Stretching",
+        "Swimming",
+        "Hiking & Trail Skills",
+        "Horseback Riding",
+        "General Fitness"
+      ]
+    },
+    {
+      "name": "Foreign Language",
+      "icon": "🌍",
+      "courses": [
+        "Spanish",
+        "French",
+        "Latin",
+        "American Sign Language (ASL)",
+        "Mandarin Chinese",
+        "German"
+      ]
+    },
+    {
+      "name": "Life Skills",
+      "icon": "🏡",
+      "courses": [
+        "Cooking & Nutrition",
+        "Sewing & Fiber Arts",
+        "Home Economics",
+        "Financial Literacy & Money Skills",
+        "First Aid & Safety",
+        "Gardening Basics"
+      ]
+    },
+    {
+      "name": "Technology",
+      "icon": "💻",
+      "courses": [
+        "Typing & Keyboarding",
+        "Coding Basics",
+        "Digital Art & Design",
+        "Computer Safety & Digital Citizenship",
+        "Robotics & STEM"
+      ]
+    },
+    {
+      "name": "Farm & Agriculture",
+      "icon": "🌾",
+      "courses": [
+        "Animal Care & Husbandry",
+        "Crop Growing & Harvest",
+        "Farm Business & Market Math",
+        "Soil Science & Composting",
+        "Food Preservation & Canning",
+        "Beekeeping",
+        "Veterinary Basics"
+      ]
+    }
+  ]
+}
