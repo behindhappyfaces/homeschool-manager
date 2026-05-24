@@ -167,8 +167,9 @@ function assignmentRowHtml(a) {
       <td>${h(a.dueDate || '—')}</td>
       <td><span class="badge badge-${h(a.status)}">${h(a.status)}</span></td>
       <td>${masteryBadge}</td>
-      <td>
+      <td style="white-space:nowrap">
         ${completeBtn}
+        <a class="btn btn-secondary btn-sm" href="/print/assignment/${h(a.id)}" target="_blank" style="margin-left:4px;text-decoration:none">🖨️</a>
         <button class="btn btn-secondary btn-sm" data-id="${h(a.id)}" onclick="deleteAssignment(this.dataset.id)" style="margin-left:4px">✕</button>
       </td>
     </tr>
@@ -339,10 +340,14 @@ async function loadAssessmentHome() {
       const isReview = (gradeNum === String(s.reviewGrade)) || (gradeNum === 'k' && s.reviewGrade === 0);
       const borderColor = status === 'completed' ? 'var(--green)' : 'var(--border)';
       const actionBtn = status === 'pending'
-        ? `<button class="btn btn-primary" data-sid="${h(s.id)}" data-grade="${h(gradeNum)}" onclick="startAssessment(this.dataset.sid, this.dataset.grade)">Start Assessment</button>`
+        ? `<div class="flex gap-2">
+            <button class="btn btn-primary" data-sid="${h(s.id)}" data-grade="${h(gradeNum)}" onclick="startAssessment(this.dataset.sid, this.dataset.grade)">Start Online</button>
+            <a class="btn btn-secondary" href="/print/assessment/${h(gradeNum)}?studentId=${h(s.id)}" target="_blank" style="text-decoration:none">🖨️ Print</a>
+          </div>`
         : `<div class="flex gap-2">
             <button class="btn btn-secondary btn-sm" data-sid="${h(s.id)}" data-grade="${h(gradeNum)}" onclick="viewAssessmentResults(this.dataset.sid, this.dataset.grade)">View Results</button>
             <button class="btn btn-secondary btn-sm" data-sid="${h(s.id)}" data-grade="${h(gradeNum)}" onclick="startAssessment(this.dataset.sid, this.dataset.grade)">Retake</button>
+            <a class="btn btn-secondary btn-sm" href="/print/assessment/${h(gradeNum)}?studentId=${h(s.id)}" target="_blank" style="text-decoration:none">🖨️</a>
           </div>`;
       return `
         <div class="card" style="border-color:${borderColor}">
@@ -647,6 +652,12 @@ async function getLessonSuggestions() {
 
   btn.textContent = 'Get Suggestions';
   btn.disabled = false;
+}
+
+// Print helpers
+function printDailyPack() {
+  const today = new Date().toISOString().split('T')[0];
+  window.open(`/print/daily?date=${today}`, '_blank');
 }
 
 // Add a subjects route for client (not strictly needed but prevents 404 noise)

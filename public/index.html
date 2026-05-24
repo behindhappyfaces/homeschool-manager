@@ -41,7 +41,10 @@
           <div class="page-title">Good morning! 🌅</div>
           <div class="page-subtitle" id="dashboard-date"></div>
         </div>
-        <button class="btn btn-primary" onclick="navigate('assignments')">+ Add Assignment</button>
+        <div class="flex gap-2">
+          <button class="btn btn-secondary" onclick="printDailyPack()">🖨️ Print Daily Pack</button>
+          <button class="btn btn-primary" onclick="openAddAssignment()">+ Add Assignment</button>
+        </div>
       </div>
 
       <div class="stats-row" id="dashboard-stats"></div>
@@ -73,7 +76,10 @@
           <div class="page-title">Assignments</div>
           <div class="page-subtitle">Track daily work and completion</div>
         </div>
-        <button class="btn btn-primary" onclick="openAddAssignment()">+ New Assignment</button>
+        <div class="flex gap-2">
+          <button class="btn btn-secondary" onclick="printDailyPack()">🖨️ Print Daily Pack</button>
+          <button class="btn btn-primary" onclick="openAddAssignment()">+ New Assignment</button>
+        </div>
       </div>
 
       <div class="flex gap-3 mb-4">

@@ -15,6 +15,7 @@ app.use('/api/students', require('./src/routes/students'));
 app.use('/api/assignments', require('./src/routes/assignments'));
 app.use('/api/assessments', require('./src/routes/assessments'));
 app.use('/api/ai', require('./src/routes/ai'));
+app.use('/print', require('./src/routes/print'));
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
