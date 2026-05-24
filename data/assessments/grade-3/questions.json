@@ -1,0 +1,42 @@
+{
+  "grade": "3",
+  "title": "3rd Grade Review Assessment",
+  "sections": [
+    {
+      "subject": "Mathematics",
+      "questions": [
+        { "id": "3-m-1", "text": "What is 7 × 8?", "type": "multiple-choice", "options": ["54", "56", "58", "63"], "answer": "56", "skill": "multiplication" },
+        { "id": "3-m-2", "text": "What is 45 ÷ 9?", "type": "multiple-choice", "options": ["4", "5", "6", "7"], "answer": "5", "skill": "division" },
+        { "id": "3-m-3", "text": "Round 347 to the nearest hundred.", "type": "multiple-choice", "options": ["300", "340", "350", "400"], "answer": "300", "skill": "rounding" },
+        { "id": "3-m-4", "text": "What fraction is shaded if 3 out of 4 equal parts are shaded?", "type": "multiple-choice", "options": ["1/4", "2/4", "3/4", "4/3"], "answer": "3/4", "skill": "fractions" },
+        { "id": "3-m-5", "text": "What is the perimeter of a rectangle with length 5 and width 3?", "type": "multiple-choice", "options": ["8", "15", "16", "18"], "answer": "16", "skill": "geometry" },
+        { "id": "3-m-6", "text": "What is 234 + 189?", "type": "multiple-choice", "options": ["413", "423", "423", "433"], "answer": "423", "skill": "addition-3-digit" }
+      ]
+    },
+    {
+      "subject": "Reading",
+      "questions": [
+        { "id": "3-r-1", "text": "What is the MAIN IDEA of a paragraph?", "type": "multiple-choice", "options": ["A detail about the topic", "The most important point about the topic", "The last sentence", "A question about the topic"], "answer": "The most important point about the topic", "skill": "main-idea" },
+        { "id": "3-r-2", "text": "Which word means the OPPOSITE of 'ancient'?", "type": "multiple-choice", "options": ["old", "modern", "large", "dark"], "answer": "modern", "skill": "vocabulary-antonyms" },
+        { "id": "3-r-3", "text": "What type of text would you read to learn how to make bread?", "type": "multiple-choice", "options": ["Fiction story", "Poem", "Procedural/how-to text", "Biography"], "answer": "Procedural/how-to text", "skill": "text-types" },
+        { "id": "3-r-4", "text": "A character who changes throughout a story is called a...", "type": "multiple-choice", "options": ["static character", "dynamic character", "narrator", "antagonist"], "answer": "dynamic character", "skill": "story-elements" },
+        { "id": "3-r-5", "text": "What does the prefix 'un-' mean in the word 'unhappy'?", "type": "multiple-choice", "options": ["very", "not", "again", "before"], "answer": "not", "skill": "prefixes" }
+      ]
+    },
+    {
+      "subject": "Writing",
+      "questions": [
+        { "id": "3-w-1", "text": "Which sentence uses a comma correctly?", "type": "multiple-choice", "options": ["I like apples, oranges and bananas.", "I like, apples oranges and bananas.", "I like apples oranges, and bananas.", "I like apples, oranges, and bananas."], "answer": "I like apples, oranges, and bananas.", "skill": "commas-in-series" },
+        { "id": "3-w-2", "text": "Which is an example of a topic sentence?", "type": "multiple-choice", "options": ["The dog barked.", "Farm animals are important for many reasons.", "First, cows give us milk.", "In conclusion, farms are good."], "answer": "Farm animals are important for many reasons.", "skill": "paragraph-structure" },
+        { "id": "3-w-3", "text": "Which sentence uses correct subject-verb agreement?", "type": "multiple-choice", "options": ["The chickens runs fast.", "The chickens run fast.", "The chickens running fast.", "The chickens is fast."], "answer": "The chickens run fast.", "skill": "grammar" }
+      ]
+    },
+    {
+      "subject": "Science",
+      "questions": [
+        { "id": "3-s-1", "text": "What is the water cycle process where water turns from liquid to vapor?", "type": "multiple-choice", "options": ["Condensation", "Precipitation", "Evaporation", "Collection"], "answer": "Evaporation", "skill": "water-cycle" },
+        { "id": "3-s-2", "text": "Which type of rock is formed from cooled lava?", "type": "multiple-choice", "options": ["Sedimentary", "Metamorphic", "Igneous", "Fossil"], "answer": "Igneous", "skill": "rocks-minerals" }
+      ]
+    }
+  ]
+}

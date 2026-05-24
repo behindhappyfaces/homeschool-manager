@@ -1,0 +1,21 @@
+{
+  "subjects": [
+    { "id": "mathematics", "name": "Mathematics", "icon": "🔢", "color": "#4A90D9" },
+    { "id": "reading", "name": "Reading", "icon": "📚", "color": "#7B68EE" },
+    { "id": "writing", "name": "Writing", "icon": "✏️", "color": "#50C878" },
+    { "id": "phonics", "name": "Phonics", "icon": "🔤", "color": "#FF7F50" },
+    { "id": "spelling", "name": "Spelling", "icon": "🔡", "color": "#FFD700" },
+    { "id": "science", "name": "Science", "icon": "🔬", "color": "#20B2AA" },
+    { "id": "social-studies", "name": "Social Studies", "icon": "🗺️", "color": "#CD853F" },
+    { "id": "art", "name": "Art", "icon": "🎨", "color": "#FF69B4" },
+    { "id": "physical-education", "name": "Physical Education", "icon": "⚽", "color": "#32CD32" },
+    { "id": "life-skills", "name": "Life Skills", "icon": "🏡", "color": "#8B7355" }
+  ],
+  "masteryLevels": [
+    { "min": 0, "max": 39, "label": "Beginning", "color": "#FF6B6B" },
+    { "min": 40, "max": 59, "label": "Developing", "color": "#FFB347" },
+    { "min": 60, "max": 79, "label": "Approaching", "color": "#FFD700" },
+    { "min": 80, "max": 89, "label": "Proficient", "color": "#90EE90" },
+    { "min": 90, "max": 100, "label": "Mastered", "color": "#32CD32" }
+  ]
+}

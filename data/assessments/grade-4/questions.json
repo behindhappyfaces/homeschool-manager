@@ -1,0 +1,42 @@
+{
+  "grade": "4",
+  "title": "4th Grade Level Assessment",
+  "sections": [
+    {
+      "subject": "Mathematics",
+      "questions": [
+        { "id": "4-m-1", "text": "What is 12 × 15?", "type": "multiple-choice", "options": ["170", "180", "190", "175"], "answer": "180", "skill": "multi-digit-multiplication" },
+        { "id": "4-m-2", "text": "What is 144 ÷ 12?", "type": "multiple-choice", "options": ["10", "11", "12", "13"], "answer": "12", "skill": "division" },
+        { "id": "4-m-3", "text": "Which fraction is equivalent to 1/2?", "type": "multiple-choice", "options": ["2/6", "3/8", "4/8", "5/9"], "answer": "4/8", "skill": "equivalent-fractions" },
+        { "id": "4-m-4", "text": "What is 3.5 + 2.7?", "type": "multiple-choice", "options": ["5.2", "6.2", "6.0", "5.8"], "answer": "6.2", "skill": "decimals" },
+        { "id": "4-m-5", "text": "A rectangle has an area of 24 sq ft. Its width is 4 ft. What is its length?", "type": "multiple-choice", "options": ["4 ft", "5 ft", "6 ft", "8 ft"], "answer": "6 ft", "skill": "area" },
+        { "id": "4-m-6", "text": "What is 1,250 × 4?", "type": "multiple-choice", "options": ["4,000", "4,500", "5,000", "5,500"], "answer": "5,000", "skill": "multi-digit-multiplication" }
+      ]
+    },
+    {
+      "subject": "Reading",
+      "questions": [
+        { "id": "4-r-1", "text": "What is an inference?", "type": "multiple-choice", "options": ["Something directly stated in the text", "A conclusion drawn from clues in the text", "The main character's name", "The setting of the story"], "answer": "A conclusion drawn from clues in the text", "skill": "inference" },
+        { "id": "4-r-2", "text": "What is the difference between a simile and a metaphor?", "type": "multiple-choice", "options": ["There is no difference", "A simile uses 'like' or 'as', a metaphor does not", "A metaphor uses 'like' or 'as', a simile does not", "Similes are in poems only"], "answer": "A simile uses 'like' or 'as', a metaphor does not", "skill": "figurative-language" },
+        { "id": "4-r-3", "text": "What does the suffix '-tion' mean in the word 'celebration'?", "type": "multiple-choice", "options": ["without", "the act of", "one who", "able to be"], "answer": "the act of", "skill": "suffixes" },
+        { "id": "4-r-4", "text": "Which type of writing presents two sides of an argument?", "type": "multiple-choice", "options": ["Narrative", "Informational", "Opinion/Argumentative", "Poetry"], "answer": "Opinion/Argumentative", "skill": "text-types" },
+        { "id": "4-r-5", "text": "What is the theme of a story?", "type": "multiple-choice", "options": ["Where the story takes place", "The central message or lesson", "The main character's problem", "The beginning of the story"], "answer": "The central message or lesson", "skill": "theme" }
+      ]
+    },
+    {
+      "subject": "Writing",
+      "questions": [
+        { "id": "4-w-1", "text": "Which sentence uses an apostrophe correctly?", "type": "multiple-choice", "options": ["The farm's animals are healthy.", "The farms animals are healthy.", "The farm is animals are healthy.", "The farms' animal's are healthy."], "answer": "The farm's animals are healthy.", "skill": "apostrophes" },
+        { "id": "4-w-2", "text": "What is the purpose of a concluding paragraph?", "type": "multiple-choice", "options": ["To introduce new ideas", "To summarize and wrap up the writing", "To list all the details", "To start the story"], "answer": "To summarize and wrap up the writing", "skill": "paragraph-structure" },
+        { "id": "4-w-3", "text": "Which sentence is in past tense?", "type": "multiple-choice", "options": ["The goats eat grass.", "The goats will eat grass.", "The goats ate grass.", "The goats are eating grass."], "answer": "The goats ate grass.", "skill": "verb-tense" }
+      ]
+    },
+    {
+      "subject": "Science",
+      "questions": [
+        { "id": "4-s-1", "text": "What is an ecosystem?", "type": "multiple-choice", "options": ["Only the animals in an area", "Only the plants in an area", "All living and non-living things in an area interacting together", "The weather in an area"], "answer": "All living and non-living things in an area interacting together", "skill": "ecosystems" },
+        { "id": "4-s-2", "text": "What happens during photosynthesis?", "type": "multiple-choice", "options": ["Plants eat insects", "Plants make food using sunlight, water, and CO2", "Plants breathe out oxygen only", "Plants absorb nutrients from other plants"], "answer": "Plants make food using sunlight, water, and CO2", "skill": "plant-biology" }
+      ]
+    }
+  ]
+}

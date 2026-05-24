@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Homeschool Manager</title>
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+<div class="app">
+  <!-- Sidebar -->
+  <nav class="sidebar">
+    <div class="sidebar-logo">🌾 <span>Homeschool</span></div>
+    <button class="nav-item active" onclick="navigate('dashboard')" data-page="dashboard">
+      <span class="icon">🏠</span><span>Dashboard</span>
+    </button>
+    <button class="nav-item" onclick="navigate('students')" data-page="students">
+      <span class="icon">👦</span><span>Students</span>
+    </button>
+    <button class="nav-item" onclick="navigate('assignments')" data-page="assignments">
+      <span class="icon">📋</span><span>Assignments</span>
+    </button>
+    <button class="nav-item" onclick="navigate('assessments')" data-page="assessments">
+      <span class="icon">📝</span><span>Assessments</span>
+    </button>
+    <button class="nav-item" onclick="navigate('progress')" data-page="progress">
+      <span class="icon">📈</span><span>Progress</span>
+    </button>
+    <button class="nav-item" onclick="navigate('ai-tools')" data-page="ai-tools">
+      <span class="icon">✨</span><span>AI Tools</span>
+    </button>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="main">
+
+    <!-- DASHBOARD -->
+    <div id="page-dashboard" class="page active">
+      <div class="page-header">
+        <div>
+          <div class="page-title">Good morning! 🌅</div>
+          <div class="page-subtitle" id="dashboard-date"></div>
+        </div>
+        <button class="btn btn-primary" onclick="navigate('assignments')">+ Add Assignment</button>
+      </div>
+
+      <div class="stats-row" id="dashboard-stats"></div>
+
+      <div class="grid-2" id="dashboard-students"></div>
+
+      <div class="section-header mt-6">
+        <div class="section-title">Today's Assignments</div>
+        <button class="btn btn-secondary btn-sm" onclick="navigate('assignments')">View All</button>
+      </div>
+      <div class="card" id="today-assignments"><div class="text-muted">Loading...</div></div>
+    </div>
+
+    <!-- STUDENTS -->
+    <div id="page-students" class="page">
+      <div class="page-header">
+        <div>
+          <div class="page-title">Students</div>
+          <div class="page-subtitle">Mastery tracking by subject</div>
+        </div>
+      </div>
+      <div class="grid-2" id="students-detail"></div>
+    </div>
+
+    <!-- ASSIGNMENTS -->
+    <div id="page-assignments" class="page">
+      <div class="page-header">
+        <div>
+          <div class="page-title">Assignments</div>
+          <div class="page-subtitle">Track daily work and completion</div>
+        </div>
+        <button class="btn btn-primary" onclick="openAddAssignment()">+ New Assignment</button>
+      </div>
+
+      <div class="flex gap-3 mb-4">
+        <select class="form-select" style="width:180px" id="filter-student" onchange="loadAssignments()">
+          <option value="">All Students</option>
+        </select>
+        <select class="form-select" style="width:160px" id="filter-status" onchange="loadAssignments()">
+          <option value="">All Status</option>
+          <option value="pending">Pending</option>
+          <option value="completed">Completed</option>
+        </select>
+      </div>
+
+      <div class="card">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Title</th><th>Student</th><th>Subject</th><th>Due</th><th>Status</th><th>Mastery</th><th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="assignments-table-body">
+              <tr><td colspan="7" class="text-muted" style="text-align:center;padding:32px">No assignments yet</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ASSESSMENTS -->
+    <div id="page-assessments" class="page">
+      <div class="page-header">
+        <div>
+          <div class="page-title">Assessments</div>
+          <div class="page-subtitle">Grade-level placement and mastery testing</div>
+        </div>
+      </div>
+      <div id="assessment-home"></div>
+      <div id="assessment-quiz" class="hidden"></div>
+      <div id="assessment-results-view" class="hidden"></div>
+    </div>
+
+    <!-- PROGRESS -->
+    <div id="page-progress" class="page">
+      <div class="page-header">
+        <div>
+          <div class="page-title">Progress</div>
+          <div class="page-subtitle">Mastery trends and subject breakdown</div>
+        </div>
+      </div>
+      <div id="progress-content"></div>
+    </div>
+
+    <!-- AI TOOLS -->
+    <div id="page-ai-tools" class="page">
+      <div class="page-header">
+        <div>
+          <div class="page-title">✨ AI Tools</div>
+          <div class="page-subtitle">Powered by Claude</div>
+        </div>
+      </div>
+      <div id="ai-status-banner" class="card mb-4"></div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="section-title mb-4">📅 Daily Plan Generator</div>
+          <p class="text-muted mb-4" style="font-size:14px">Generate a customized morning school plan based on both students' current mastery levels.</p>
+          <button class="btn btn-primary" onclick="generateDailyPlan()">Generate Today's Plan</button>
+          <div id="daily-plan-output" class="ai-panel hidden mt-4">
+            <div class="ai-panel-header">✨ Today's Plan</div>
+            <div class="ai-content" id="daily-plan-text"></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="section-title mb-4">💡 Lesson Suggestions</div>
+          <div class="form-group">
+            <label class="form-label">Student</label>
+            <select class="form-select" id="ai-student-select"></select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Subject</label>
+            <select class="form-select" id="ai-subject-select">
+              <option value="Mathematics">Mathematics</option>
+              <option value="Reading">Reading</option>
+              <option value="Writing">Writing</option>
+              <option value="Science">Science</option>
+              <option value="Social Studies">Social Studies</option>
+              <option value="Phonics">Phonics</option>
+              <option value="Spelling">Spelling</option>
+            </select>
+          </div>
+          <button class="btn btn-primary" onclick="getLessonSuggestions()">Get Suggestions</button>
+          <div id="lesson-suggestions-output" class="ai-panel hidden mt-4">
+            <div class="ai-panel-header">✨ Lesson Ideas</div>
+            <div class="ai-content" id="lesson-suggestions-text"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- ADD ASSIGNMENT MODAL -->
+<div class="modal-overlay" id="assignment-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">New Assignment</div>
+      <button class="modal-close" onclick="closeModal('assignment-modal')">✕</button>
+    </div>
+    <form onsubmit="submitAssignment(event)">
+      <div class="form-group">
+        <label class="form-label">Student</label>
+        <select class="form-select" id="modal-student" required></select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Title</label>
+        <input class="form-input" type="text" id="modal-title" placeholder="e.g. Chapter 3 Reading" required />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Subject</label>
+        <select class="form-select" id="modal-subject" required>
+          <option value="Mathematics">Mathematics</option>
+          <option value="Reading">Reading</option>
+          <option value="Writing">Writing</option>
+          <option value="Phonics">Phonics</option>
+          <option value="Spelling">Spelling</option>
+          <option value="Science">Science</option>
+          <option value="Social Studies">Social Studies</option>
+          <option value="Art">Art</option>
+          <option value="Physical Education">Physical Education</option>
+          <option value="Life Skills">Life Skills</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Grade Level</label>
+        <select class="form-select" id="modal-grade" required>
+          <option value="K">Kindergarten (Review)</option>
+          <option value="1">1st Grade</option>
+          <option value="2">2nd Grade</option>
+          <option value="3">3rd Grade (Review)</option>
+          <option value="4">4th Grade</option>
+          <option value="5">5th Grade</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Due Date</label>
+        <input class="form-input" type="date" id="modal-due" required />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Description (optional)</label>
+        <textarea class="form-textarea" id="modal-description" placeholder="Assignment details..."></textarea>
+      </div>
+      <div class="flex gap-3 mt-4">
+        <button type="submit" class="btn btn-primary">Add Assignment</button>
+        <button type="button" class="btn btn-secondary" onclick="closeModal('assignment-modal')">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- COMPLETE ASSIGNMENT MODAL -->
+<div class="modal-overlay" id="complete-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">Complete Assignment</div>
+      <button class="modal-close" onclick="closeModal('complete-modal')">✕</button>
+    </div>
+    <div id="complete-modal-body">
+      <div class="form-group">
+        <label class="form-label">Mastery Score (0–100%)</label>
+        <input class="form-input" type="number" id="mastery-score" min="0" max="100" placeholder="Enter score..." />
+      </div>
+      <p class="text-muted text-sm mb-4">Leave blank if not scored. This will update the subject mastery tracker.</p>
+      <div class="flex gap-3">
+        <button class="btn btn-success" onclick="confirmComplete()">✓ Mark Complete</button>
+        <button class="btn btn-secondary" onclick="closeModal('complete-modal')">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/js/app.js"></script>
+</body>
+</html>

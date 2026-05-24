@@ -1,0 +1,55 @@
+{
+  "students": [
+    {
+      "id": "student-1",
+      "name": "Student 1",
+      "currentGrade": 1,
+      "reviewGrade": 0,
+      "enteringGrade": 2,
+      "schoolYear": "2025-2026",
+      "avatar": "🌱",
+      "subjects": {
+        "Mathematics": { "mastery": 0, "level": "review" },
+        "Reading": { "mastery": 0, "level": "review" },
+        "Writing": { "mastery": 0, "level": "review" },
+        "Phonics": { "mastery": 0, "level": "review" },
+        "Spelling": { "mastery": 0, "level": "review" },
+        "Science": { "mastery": 0, "level": "review" },
+        "Social Studies": { "mastery": 0, "level": "review" },
+        "Art": { "mastery": 0, "level": "current" },
+        "Physical Education": { "mastery": 0, "level": "current" },
+        "Life Skills": { "mastery": 0, "level": "current" }
+      },
+      "assessmentStatus": {
+        "grade-k": "pending",
+        "grade-1": "pending"
+      },
+      "createdAt": "2026-05-24"
+    },
+    {
+      "id": "student-2",
+      "name": "Student 2",
+      "currentGrade": 4,
+      "reviewGrade": 3,
+      "enteringGrade": 5,
+      "schoolYear": "2025-2026",
+      "avatar": "🌻",
+      "subjects": {
+        "Mathematics": { "mastery": 0, "level": "review" },
+        "Reading": { "mastery": 0, "level": "review" },
+        "Writing": { "mastery": 0, "level": "review" },
+        "Spelling": { "mastery": 0, "level": "review" },
+        "Science": { "mastery": 0, "level": "review" },
+        "Social Studies": { "mastery": 0, "level": "review" },
+        "Art": { "mastery": 0, "level": "current" },
+        "Physical Education": { "mastery": 0, "level": "current" },
+        "Life Skills": { "mastery": 0, "level": "current" }
+      },
+      "assessmentStatus": {
+        "grade-3": "pending",
+        "grade-4": "pending"
+      },
+      "createdAt": "2026-05-24"
+    }
+  ]
+}

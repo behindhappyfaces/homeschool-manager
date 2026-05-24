@@ -1,0 +1,42 @@
+{
+  "grade": "1",
+  "title": "1st Grade Level Assessment",
+  "sections": [
+    {
+      "subject": "Mathematics",
+      "questions": [
+        { "id": "1-m-1", "text": "What is 7 + 8?", "type": "multiple-choice", "options": ["13", "14", "15", "16"], "answer": "15", "skill": "addition-to-20" },
+        { "id": "1-m-2", "text": "What is 12 - 5?", "type": "multiple-choice", "options": ["6", "7", "8", "9"], "answer": "7", "skill": "subtraction-to-20" },
+        { "id": "1-m-3", "text": "Which number is GREATER? 34 or 43?", "type": "multiple-choice", "options": ["34", "43", "They are equal", "I don't know"], "answer": "43", "skill": "place-value" },
+        { "id": "1-m-4", "text": "How many tens are in the number 25?", "type": "multiple-choice", "options": ["1", "2", "5", "25"], "answer": "2", "skill": "place-value" },
+        { "id": "1-m-5", "text": "What comes next? 5, 10, 15, 20, ___", "type": "multiple-choice", "options": ["22", "24", "25", "30"], "answer": "25", "skill": "skip-counting" },
+        { "id": "1-m-6", "text": "It is 2:00. What time will it be in 1 hour?", "type": "multiple-choice", "options": ["1:00", "2:30", "3:00", "4:00"], "answer": "3:00", "skill": "telling-time" }
+      ]
+    },
+    {
+      "subject": "Reading",
+      "questions": [
+        { "id": "1-r-1", "text": "What is the vowel sound in the word 'cake'?", "type": "multiple-choice", "options": ["short a", "long a", "short e", "long e"], "answer": "long a", "skill": "vowel-sounds" },
+        { "id": "1-r-2", "text": "Which word has a silent 'e'?", "type": "multiple-choice", "options": ["cat", "bed", "bike", "hop"], "answer": "bike", "skill": "silent-e" },
+        { "id": "1-r-3", "text": "What does 'The dog ran fast' tell you?", "type": "multiple-choice", "options": ["The dog is sleeping", "The dog moved quickly", "The dog is eating", "The dog is barking"], "answer": "The dog moved quickly", "skill": "comprehension" },
+        { "id": "1-r-4", "text": "Which word is a compound word?", "type": "multiple-choice", "options": ["happy", "running", "sunshine", "jumped"], "answer": "sunshine", "skill": "compound-words" },
+        { "id": "1-r-5", "text": "What is the plural of 'box'?", "type": "multiple-choice", "options": ["boxs", "boxes", "boxies", "box"], "answer": "boxes", "skill": "plurals" }
+      ]
+    },
+    {
+      "subject": "Writing",
+      "questions": [
+        { "id": "1-w-1", "text": "Which sentence is correct?", "type": "multiple-choice", "options": ["the dog ran fast.", "The dog ran fast.", "The dog Ran fast.", "The Dog ran fast"], "answer": "The dog ran fast.", "skill": "capitalization-punctuation" },
+        { "id": "1-w-2", "text": "Which word is a noun (person, place, or thing)?", "type": "multiple-choice", "options": ["run", "happy", "farm", "quickly"], "answer": "farm", "skill": "parts-of-speech" },
+        { "id": "1-w-3", "text": "Which word is a verb (action word)?", "type": "multiple-choice", "options": ["tree", "jump", "blue", "house"], "answer": "jump", "skill": "parts-of-speech" }
+      ]
+    },
+    {
+      "subject": "Science",
+      "questions": [
+        { "id": "1-s-1", "text": "What do plants need to grow?", "type": "multiple-choice", "options": ["Only water", "Only sunlight", "Sunlight, water, and soil", "Only soil"], "answer": "Sunlight, water, and soil", "skill": "living-things" },
+        { "id": "1-s-2", "text": "Which season comes after Summer?", "type": "multiple-choice", "options": ["Spring", "Winter", "Fall", "Summer again"], "answer": "Fall", "skill": "seasons" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "grade": "K",
+  "title": "Kindergarten Review Assessment",
+  "sections": [
+    {
+      "subject": "Mathematics",
+      "questions": [
+        { "id": "k-m-1", "text": "Count to 10. How many stars are here? ⭐⭐⭐⭐⭐⭐⭐", "type": "multiple-choice", "options": ["5", "6", "7", "8"], "answer": "7", "skill": "counting" },
+        { "id": "k-m-2", "text": "What number comes after 5?", "type": "multiple-choice", "options": ["4", "6", "7", "3"], "answer": "6", "skill": "number-sequence" },
+        { "id": "k-m-3", "text": "Which group has MORE? 🍎🍎🍎 or 🍊🍊🍊🍊🍊", "type": "multiple-choice", "options": ["Apples (🍎)", "Oranges (🍊)", "They are the same", "I don't know"], "answer": "Oranges (🍊)", "skill": "comparing-quantities" },
+        { "id": "k-m-4", "text": "2 + 3 = ?", "type": "multiple-choice", "options": ["4", "5", "6", "3"], "answer": "5", "skill": "addition" },
+        { "id": "k-m-5", "text": "What shape has 4 equal sides?", "type": "multiple-choice", "options": ["Circle", "Triangle", "Square", "Rectangle"], "answer": "Square", "skill": "shapes" }
+      ]
+    },
+    {
+      "subject": "Reading",
+      "questions": [
+        { "id": "k-r-1", "text": "Which word starts with the letter 'B'?", "type": "multiple-choice", "options": ["Cat", "Dog", "Ball", "Frog"], "answer": "Ball", "skill": "letter-sounds" },
+        { "id": "k-r-2", "text": "What sound does the letter 'M' make?", "type": "multiple-choice", "options": ["/b/", "/m/", "/p/", "/s/"], "answer": "/m/", "skill": "phonics" },
+        { "id": "k-r-3", "text": "Which word rhymes with 'cat'?", "type": "multiple-choice", "options": ["Dog", "Hat", "Cup", "Bed"], "answer": "Hat", "skill": "rhyming" },
+        { "id": "k-r-4", "text": "How many letters are in the word 'SUN'?", "type": "multiple-choice", "options": ["2", "3", "4", "5"], "answer": "3", "skill": "word-awareness" },
+        { "id": "k-r-5", "text": "Which of these is a real word?", "type": "multiple-choice", "options": ["blit", "cat", "zorp", "fwam"], "answer": "cat", "skill": "sight-words" }
+      ]
+    },
+    {
+      "subject": "Writing",
+      "questions": [
+        { "id": "k-w-1", "text": "Which letter is written correctly to make the word 'CAT'?", "type": "multiple-choice", "options": ["K-A-T", "C-A-T", "S-A-T", "C-E-T"], "answer": "C-A-T", "skill": "letter-formation" },
+        { "id": "k-w-2", "text": "A sentence starts with a...", "type": "multiple-choice", "options": ["lowercase letter", "capital letter", "number", "period"], "answer": "capital letter", "skill": "sentence-structure" },
+        { "id": "k-w-3", "text": "A sentence ends with a...", "type": "multiple-choice", "options": ["comma", "capital letter", "period", "space"], "answer": "period", "skill": "punctuation" }
+      ]
+    }
+  ]
+}
