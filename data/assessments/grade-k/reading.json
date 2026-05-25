@@ -1,0 +1,33 @@
+{
+  "grade": "K",
+  "subject": "Reading",
+  "title": "Kindergarten Reading & Language Arts Assessment",
+  "teks": "K.2, K.3, K.4, K.5, K.6, K.7",
+  "questions": [
+    { "id": "k-r-01", "text": "Which letter makes the sound at the beginning of 'sun'?", "type": "multiple-choice", "options": ["B", "S", "T", "P"], "answer": "S", "teks": "K.2A", "skill": "letter-sounds" },
+    { "id": "k-r-02", "text": "Which word RHYMES with 'cat'?", "type": "multiple-choice", "options": ["dog", "hat", "cup", "run"], "answer": "hat", "teks": "K.2B", "skill": "rhyming" },
+    { "id": "k-r-03", "text": "Which word RHYMES with 'farm'?", "type": "multiple-choice", "options": ["fish", "fence", "barn", "arm"], "answer": "arm", "teks": "K.2B", "skill": "rhyming" },
+    { "id": "k-r-04", "text": "How many SOUNDS are in the word 'hat'?", "type": "multiple-choice", "options": ["1", "2", "3", "4"], "answer": "3", "teks": "K.2C", "skill": "phoneme-segmentation" },
+    { "id": "k-r-05", "text": "Which word starts with the same sound as 'pig'?", "type": "multiple-choice", "options": ["big", "pan", "dig", "fig"], "answer": "pan", "teks": "K.2A", "skill": "beginning-sounds" },
+    { "id": "k-r-06", "text": "What letter does 'moon' START with?", "type": "multiple-choice", "options": ["B", "M", "N", "W"], "answer": "M", "teks": "K.2A", "skill": "beginning-letter" },
+    { "id": "k-r-07", "text": "Which of these is a VOWEL?", "type": "multiple-choice", "options": ["B", "C", "E", "T"], "answer": "E", "teks": "K.2A", "skill": "vowels" },
+    { "id": "k-r-08", "text": "Look at this word: DOG. What letter is in the MIDDLE?", "type": "multiple-choice", "options": ["D", "O", "G", "B"], "answer": "O", "teks": "K.2D", "skill": "medial-sounds" },
+    { "id": "k-r-09", "text": "Which of these is a REAL word?", "type": "multiple-choice", "options": ["blit", "zorp", "run", "fwam"], "answer": "run", "teks": "K.3A", "skill": "sight-words" },
+    { "id": "k-r-10", "text": "A sentence starts with a ___", "type": "multiple-choice", "options": ["period", "lowercase letter", "capital letter", "question mark"], "answer": "capital letter", "teks": "K.11A", "skill": "print-concepts" },
+    { "id": "k-r-11", "text": "A telling sentence ends with a ___", "type": "multiple-choice", "options": ["capital letter", "comma", "question mark", "period"], "answer": "period", "teks": "K.11A", "skill": "print-concepts" },
+    { "id": "k-r-12", "text": "Which word is a SIGHT WORD you should know? (Common kindergarten word)", "type": "multiple-choice", "options": ["elephant", "the", "umbrella", "butterfly"], "answer": "the", "teks": "K.3A", "skill": "sight-words" },
+    { "id": "k-r-13", "text": "We READ from LEFT to ___", "type": "multiple-choice", "options": ["up", "down", "right", "left"], "answer": "right", "teks": "K.4A", "skill": "print-directionality" },
+    { "id": "k-r-14", "text": "Which picture would go with a book about farm animals?", "type": "multiple-choice", "options": ["A car", "A cow", "A boat", "A phone"], "answer": "A cow", "teks": "K.7A", "skill": "comprehension-connection" },
+    { "id": "k-r-15", "text": "What is the BEGINNING sound in 'tree'?", "type": "multiple-choice", "options": ["/t/", "/r/", "/e/", "/tr/"], "answer": "/t/", "teks": "K.2A", "skill": "beginning-sounds" },
+    { "id": "k-r-16", "text": "Which two words are the SAME?", "type": "multiple-choice", "options": ["cat / can", "dog / dig", "run / run", "hat / hot"], "answer": "run / run", "teks": "K.4B", "skill": "word-recognition" },
+    { "id": "k-r-17", "text": "Which word has the SHORT 'a' sound like in 'map'?", "type": "multiple-choice", "options": ["cake", "bike", "bat", "bee"], "answer": "bat", "teks": "K.2E", "skill": "short-vowels" },
+    { "id": "k-r-18", "text": "How many WORDS are in this sentence: 'The dog ran fast'?", "type": "multiple-choice", "options": ["3", "4", "5", "6"], "answer": "4", "teks": "K.4C", "skill": "word-awareness" },
+    { "id": "k-r-19", "text": "Which word ends with the same sound as 'map'?", "type": "multiple-choice", "options": ["mud", "mop", "cap", "mat"], "answer": "cap", "teks": "K.2B", "skill": "ending-sounds" },
+    { "id": "k-r-20", "text": "In a story, who the story is ABOUT is called the ___", "type": "multiple-choice", "options": ["setting", "character", "problem", "ending"], "answer": "character", "teks": "K.6A", "skill": "story-elements" },
+    { "id": "k-r-21", "text": "WHERE a story takes place is called the ___", "type": "multiple-choice", "options": ["character", "plot", "setting", "title"], "answer": "setting", "teks": "K.6A", "skill": "story-elements" },
+    { "id": "k-r-22", "text": "Which word has the same ENDING sound as 'pig'?", "type": "multiple-choice", "options": ["pin", "big", "pit", "tip"], "answer": "big", "teks": "K.2B", "skill": "ending-sounds" },
+    { "id": "k-r-23", "text": "What does the word 'tiny' mean?", "type": "multiple-choice", "options": ["very big", "very small", "very fast", "very loud"], "answer": "very small", "teks": "K.7B", "skill": "vocabulary" },
+    { "id": "k-r-24", "text": "Which picture matches the word 'jump'?", "type": "multiple-choice", "options": ["A child sleeping", "A child jumping", "A child eating", "A child drawing"], "answer": "A child jumping", "teks": "K.3B", "skill": "word-picture-match" },
+    { "id": "k-r-25", "text": "The sound /b/ matches which letter?", "type": "multiple-choice", "options": ["D", "P", "B", "Q"], "answer": "B", "teks": "K.2A", "skill": "letter-sounds" }
+  ]
+}

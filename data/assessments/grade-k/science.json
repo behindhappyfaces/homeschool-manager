@@ -1,0 +1,28 @@
+{
+  "grade": "K",
+  "subject": "Science",
+  "title": "Kindergarten Science Assessment",
+  "teks": "K.2, K.6, K.7, K.8, K.9, K.10",
+  "questions": [
+    { "id": "k-s-01", "text": "Which of these is a LIVING thing?", "type": "multiple-choice", "options": ["A rock", "A tree", "A cloud", "A chair"], "answer": "A tree", "teks": "K.9A", "skill": "living-nonliving" },
+    { "id": "k-s-02", "text": "Which of these is NOT living?", "type": "multiple-choice", "options": ["A dog", "A flower", "A brick", "A worm"], "answer": "A brick", "teks": "K.9A", "skill": "living-nonliving" },
+    { "id": "k-s-03", "text": "All living things need ___ to survive.", "type": "multiple-choice", "options": ["toys and books", "food, water, and air", "chairs and tables", "cars and trucks"], "answer": "food, water, and air", "teks": "K.9B", "skill": "basic-needs" },
+    { "id": "k-s-04", "text": "What do plants need to make their own food?", "type": "multiple-choice", "options": ["Moonlight and ice", "Sunlight, water, and air", "Sand and rocks only", "Nothing — they don't need food"], "answer": "Sunlight, water, and air", "teks": "K.9B", "skill": "plant-needs" },
+    { "id": "k-s-05", "text": "What is the weather like on a SUNNY day?", "type": "multiple-choice", "options": ["Cold and snowy", "Bright and warm", "Rainy and wet", "Dark and stormy"], "answer": "Bright and warm", "teks": "K.8A", "skill": "weather" },
+    { "id": "k-s-06", "text": "Which season has the MOST rain and flowers blooming?", "type": "multiple-choice", "options": ["Winter", "Summer", "Fall", "Spring"], "answer": "Spring", "teks": "K.8C", "skill": "seasons" },
+    { "id": "k-s-07", "text": "Which season is the HOTTEST?", "type": "multiple-choice", "options": ["Winter", "Summer", "Fall", "Spring"], "answer": "Summer", "teks": "K.8C", "skill": "seasons" },
+    { "id": "k-s-08", "text": "Leaves fall from trees during which season?", "type": "multiple-choice", "options": ["Spring", "Summer", "Fall/Autumn", "Winter"], "answer": "Fall/Autumn", "teks": "K.8C", "skill": "seasons" },
+    { "id": "k-s-09", "text": "Which body part do we use to SMELL things?", "type": "multiple-choice", "options": ["Eyes", "Ears", "Nose", "Hands"], "answer": "Nose", "teks": "K.6A", "skill": "five-senses" },
+    { "id": "k-s-10", "text": "Which body part do we use to HEAR?", "type": "multiple-choice", "options": ["Eyes", "Ears", "Tongue", "Skin"], "answer": "Ears", "teks": "K.6A", "skill": "five-senses" },
+    { "id": "k-s-11", "text": "Ice is water that has been ___", "type": "multiple-choice", "options": ["heated up", "mixed with salt", "frozen", "boiled"], "answer": "frozen", "teks": "K.5B", "skill": "matter-states" },
+    { "id": "k-s-12", "text": "Which object would SINK in water?", "type": "multiple-choice", "options": ["A feather", "A leaf", "A rock", "A piece of foam"], "answer": "A rock", "teks": "K.5A", "skill": "properties-matter" },
+    { "id": "k-s-13", "text": "A caterpillar grows into a ___", "type": "multiple-choice", "options": ["frog", "butterfly", "bird", "spider"], "answer": "butterfly", "teks": "K.10A", "skill": "life-cycles" },
+    { "id": "k-s-14", "text": "A baby frog is called a ___", "type": "multiple-choice", "options": ["cub", "foal", "tadpole", "kitten"], "answer": "tadpole", "teks": "K.10A", "skill": "life-cycles" },
+    { "id": "k-s-15", "text": "Which animal lives on a farm and gives us MILK?", "type": "multiple-choice", "options": ["Dog", "Cat", "Cow", "Horse"], "answer": "Cow", "teks": "K.9C", "skill": "animals-habitats" },
+    { "id": "k-s-16", "text": "Which of these would you use to PUSH or PULL something?", "type": "multiple-choice", "options": ["Force", "Color", "Sound", "Smell"], "answer": "Force", "teks": "K.6B", "skill": "force-motion" },
+    { "id": "k-s-17", "text": "What kind of weather do CLOUDS and RAIN come from?", "type": "multiple-choice", "options": ["Sunny weather", "Stormy weather", "Clear weather", "Warm weather only"], "answer": "Stormy weather", "teks": "K.8A", "skill": "weather" },
+    { "id": "k-s-18", "text": "Animals that hatch from EGGS include:", "type": "multiple-choice", "options": ["Dogs and cats", "Horses and cows", "Chickens and ducks", "Pigs and sheep"], "answer": "Chickens and ducks", "teks": "K.10A", "skill": "animal-reproduction" },
+    { "id": "k-s-19", "text": "Which of these would you use TASTE to learn about?", "type": "multiple-choice", "options": ["The color of an apple", "How heavy a rock is", "Whether food is sweet or sour", "How loud music is"], "answer": "Whether food is sweet or sour", "teks": "K.6A", "skill": "five-senses" },
+    { "id": "k-s-20", "text": "A tree is a plant. Plants make new plants by using ___", "type": "multiple-choice", "options": ["rocks", "seeds", "water only", "clouds"], "answer": "seeds", "teks": "K.10B", "skill": "plant-reproduction" }
+  ]
+}

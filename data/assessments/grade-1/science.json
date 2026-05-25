@@ -1,0 +1,28 @@
+{
+  "grade": "1",
+  "subject": "Science",
+  "title": "1st Grade Science Assessment",
+  "teks": "1.2, 1.5, 1.6, 1.7, 1.8, 1.9, 1.10",
+  "questions": [
+    { "id": "1-s-01", "text": "Which of the following is a SOLID?", "type": "multiple-choice", "options": ["Water", "Air", "Ice", "Steam"], "answer": "Ice", "teks": "1.5A", "skill": "states-of-matter" },
+    { "id": "1-s-02", "text": "Which of the following is a LIQUID?", "type": "multiple-choice", "options": ["Rock", "Milk", "Wood", "Sand"], "answer": "Milk", "teks": "1.5A", "skill": "states-of-matter" },
+    { "id": "1-s-03", "text": "When you HEAT ice, it turns into ___", "type": "multiple-choice", "options": ["a gas", "liquid water", "a rock", "steam only"], "answer": "liquid water", "teks": "1.5B", "skill": "matter-changes" },
+    { "id": "1-s-04", "text": "All objects have PROPERTIES. Which is a property of an object?", "type": "multiple-choice", "options": ["How many owners it has", "Its color, size, and shape", "Where it was made", "What year it was built"], "answer": "Its color, size, and shape", "teks": "1.5A", "skill": "physical-properties" },
+    { "id": "1-s-05", "text": "A plant starts as a ___ before it grows into a full plant.", "type": "multiple-choice", "options": ["fruit", "flower", "seed", "leaf"], "answer": "seed", "teks": "1.10A", "skill": "plant-life-cycle" },
+    { "id": "1-s-06", "text": "Which is the correct ORDER of a butterfly's life cycle?", "type": "multiple-choice", "options": ["Butterfly → Egg → Caterpillar → Chrysalis", "Egg → Caterpillar → Chrysalis → Butterfly", "Egg → Chrysalis → Caterpillar → Butterfly", "Caterpillar → Egg → Butterfly → Chrysalis"], "answer": "Egg → Caterpillar → Chrysalis → Butterfly", "teks": "1.10B", "skill": "animal-life-cycle" },
+    { "id": "1-s-07", "text": "Animals use CAMOUFLAGE to ___", "type": "multiple-choice", "options": ["find food faster", "attract mates", "blend into surroundings to hide", "communicate with each other"], "answer": "blend into surroundings to hide", "teks": "1.9A", "skill": "animal-adaptations" },
+    { "id": "1-s-08", "text": "A FORCE is a push or a ___", "type": "multiple-choice", "options": ["color", "pull", "sound", "smell"], "answer": "pull", "teks": "1.6A", "skill": "forces-motion" },
+    { "id": "1-s-09", "text": "If you PUSH a toy car harder, it will ___", "type": "multiple-choice", "options": ["move slower", "stop moving", "move faster", "change color"], "answer": "move faster", "teks": "1.6B", "skill": "forces-speed" },
+    { "id": "1-s-10", "text": "The Sun gives us LIGHT and ___", "type": "multiple-choice", "options": ["rain", "heat", "wind", "snow"], "answer": "heat", "teks": "1.8A", "skill": "sun-energy" },
+    { "id": "1-s-11", "text": "Which best describes SPRING weather in Texas?", "type": "multiple-choice", "options": ["Cold with snow and ice", "Very hot and dry", "Warm with rain and blooming plants", "Windy with falling leaves"], "answer": "Warm with rain and blooming plants", "teks": "1.8C", "skill": "seasonal-weather" },
+    { "id": "1-s-12", "text": "A THERMOMETER measures ___", "type": "multiple-choice", "options": ["how much it rains", "wind speed", "temperature", "cloud size"], "answer": "temperature", "teks": "1.8B", "skill": "weather-tools" },
+    { "id": "1-s-13", "text": "Which of these is something that ANIMALS need to live?", "type": "multiple-choice", "options": ["A television", "Food, water, shelter, and air", "Books and toys", "A barn only"], "answer": "Food, water, shelter, and air", "teks": "1.9B", "skill": "basic-needs-animals" },
+    { "id": "1-s-14", "text": "A MAGNET will attract (pull) objects made of ___", "type": "multiple-choice", "options": ["wood", "plastic", "metal (iron/steel)", "rubber"], "answer": "metal (iron/steel)", "teks": "1.6C", "skill": "magnetism" },
+    { "id": "1-s-15", "text": "Sound is made when objects ___", "type": "multiple-choice", "options": ["get wet", "change color", "vibrate (shake)", "get heavier"], "answer": "vibrate (shake)", "teks": "1.6D", "skill": "sound" },
+    { "id": "1-s-16", "text": "Plants make their own food through a process called ___", "type": "multiple-choice", "options": ["digestion", "respiration", "photosynthesis", "reproduction"], "answer": "photosynthesis", "teks": "1.10C", "skill": "photosynthesis" },
+    { "id": "1-s-17", "text": "Which tool would a scientist use to see very SMALL things up close?", "type": "multiple-choice", "options": ["Telescope", "Ruler", "Magnifying glass", "Thermometer"], "answer": "Magnifying glass", "teks": "1.2A", "skill": "science-tools" },
+    { "id": "1-s-18", "text": "The study of living things — like plants and animals — is called ___", "type": "multiple-choice", "options": ["astronomy", "geology", "biology", "chemistry"], "answer": "biology", "teks": "1.1A", "skill": "science-branches" },
+    { "id": "1-s-19", "text": "A HABITAT is ___", "type": "multiple-choice", "options": ["a type of weather", "the food an animal eats", "the place where an animal lives", "a kind of plant"], "answer": "the place where an animal lives", "teks": "1.9C", "skill": "habitats" },
+    { "id": "1-s-20", "text": "Fish, frogs, and turtles are animals that live NEAR or IN ___", "type": "multiple-choice", "options": ["deserts", "mountains", "water", "forests only"], "answer": "water", "teks": "1.9C", "skill": "habitats-water" }
+  ]
+}

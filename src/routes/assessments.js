@@ -5,44 +5,69 @@ const fs = require('fs');
 const { read, write, DATA_DIR } = require('../utils/dataStore');
 const { generateAssessmentFeedback } = require('../utils/claude');
 
-router.get('/questions/:grade', (req, res) => {
-  const gradeFile = path.join(DATA_DIR, 'assessments', `grade-${req.params.grade}`, 'questions.json');
-  if (!fs.existsSync(gradeFile)) return res.status(404).json({ error: 'Assessment not found' });
-  res.json(JSON.parse(fs.readFileSync(gradeFile, 'utf8')));
+const SUBJECTS_BY_GRADE = {
+  'k':  ['mathematics', 'reading', 'science', 'social-studies'],
+  '1':  ['mathematics', 'reading', 'writing', 'science', 'social-studies'],
+  '3':  ['mathematics', 'reading', 'writing', 'science', 'social-studies'],
+  '4':  ['mathematics', 'reading', 'writing', 'science', 'social-studies']
+};
+
+const SUBJECT_LABELS = {
+  'mathematics':   'Mathematics',
+  'reading':       'Reading',
+  'writing':       'Writing/Grammar',
+  'science':       'Science',
+  'social-studies':'Social Studies'
+};
+
+// List available subjects for a grade
+router.get('/subjects/:grade', (req, res) => {
+  const { grade } = req.params;
+  const subjects = SUBJECTS_BY_GRADE[grade] || [];
+  res.json(subjects.map(s => ({ id: s, label: SUBJECT_LABELS[s] })));
 });
 
+// Get questions for a grade + subject
+router.get('/questions/:grade/:subject', (req, res) => {
+  const { grade, subject } = req.params;
+  const file = path.join(DATA_DIR, 'assessments', `grade-${grade}`, `${subject}.json`);
+  if (!fs.existsSync(file)) return res.status(404).json({ error: 'Assessment not found' });
+  res.json(JSON.parse(fs.readFileSync(file, 'utf8')));
+});
+
+// Submit answers for a grade + subject
 router.post('/submit', async (req, res) => {
-  const { studentId, grade, answers } = req.body;
+  const { studentId, grade, subject, answers } = req.body;
 
-  const gradeFile = path.join(DATA_DIR, 'assessments', `grade-${grade}`, 'questions.json');
-  if (!fs.existsSync(gradeFile)) return res.status(404).json({ error: 'Assessment not found' });
+  const file = path.join(DATA_DIR, 'assessments', `grade-${grade}`, `${subject}.json`);
+  if (!fs.existsSync(file)) return res.status(404).json({ error: 'Assessment not found' });
 
-  const assessment = JSON.parse(fs.readFileSync(gradeFile, 'utf8'));
+  const assessment = JSON.parse(fs.readFileSync(file, 'utf8'));
   const { students } = read('students.json');
   const student = students.find(s => s.id === studentId);
   if (!student) return res.status(404).json({ error: 'Student not found' });
 
-  const sections = assessment.sections.map(section => {
-    let correct = 0;
-    const questionResults = section.questions.map(q => {
-      const given = answers[q.id];
-      const isCorrect = given === q.answer;
-      if (isCorrect) correct++;
-      return { id: q.id, skill: q.skill, correct: isCorrect, given, expected: q.answer };
-    });
-    const score = Math.round((correct / section.questions.length) * 100);
-    return { subject: section.subject, score, correct, total: section.questions.length, questions: questionResults };
+  let correct = 0;
+  const questionResults = assessment.questions.map(q => {
+    const given = answers[q.id];
+    const isCorrect = given === q.answer;
+    if (isCorrect) correct++;
+    return { id: q.id, skill: q.skill, teks: q.teks, correct: isCorrect, given, expected: q.answer };
   });
 
-  const overallScore = Math.round(sections.reduce((sum, s) => sum + s.score, 0) / sections.length);
+  const score = Math.round((correct / assessment.questions.length) * 100);
 
   const result = {
     id: `r-${Date.now()}`,
     studentId,
     studentName: student.name,
     grade,
-    sections,
-    overallScore,
+    subject,
+    subjectLabel: SUBJECT_LABELS[subject] || subject,
+    score,
+    correct,
+    total: assessment.questions.length,
+    questions: questionResults,
     completedAt: new Date().toISOString()
   };
 
@@ -50,24 +75,33 @@ router.post('/submit', async (req, res) => {
   resultsData.results.push(result);
   write('assessment-results.json', resultsData);
 
+  // Update student assessment status and subject mastery
   const studentsData = read('students.json');
   const sIdx = studentsData.students.findIndex(s => s.id === studentId);
   if (sIdx !== -1) {
-    studentsData.students[sIdx].assessmentStatus[`grade-${grade}`] = 'completed';
-    sections.forEach(s => {
-      if (studentsData.students[sIdx].subjects[s.subject]) {
-        const current = studentsData.students[sIdx].subjects[s.subject].mastery;
-        studentsData.students[sIdx].subjects[s.subject].mastery = current === 0 ? s.score : Math.round((current + s.score) / 2);
-      }
-    });
+    if (!studentsData.students[sIdx].assessmentStatus[`grade-${grade}`]) {
+      studentsData.students[sIdx].assessmentStatus[`grade-${grade}`] = {};
+    }
+    studentsData.students[sIdx].assessmentStatus[`grade-${grade}`][subject] = 'completed';
+
+    const subjectLabel = SUBJECT_LABELS[subject];
+    if (subjectLabel && studentsData.students[sIdx].subjects[subjectLabel]) {
+      const current = studentsData.students[sIdx].subjects[subjectLabel].mastery;
+      studentsData.students[sIdx].subjects[subjectLabel].mastery =
+        current === 0 ? score : Math.round((current + score) / 2);
+    }
+
     write('students.json', studentsData);
   }
 
-  const aiFeedback = await generateAssessmentFeedback(student.name, grade, { sections });
+  const aiFeedback = await generateAssessmentFeedback(student.name, `${grade} ${SUBJECT_LABELS[subject]}`, {
+    sections: [{ subject: SUBJECT_LABELS[subject], score, correct, total: assessment.questions.length }]
+  });
 
   res.json({ result, aiFeedback });
 });
 
+// Get all results for a student
 router.get('/results/:studentId', (req, res) => {
   const { results } = read('assessment-results.json');
   res.json(results.filter(r => r.studentId === req.params.studentId));

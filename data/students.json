@@ -11,11 +11,14 @@
       "subjects": {
         "Mathematics": { "mastery": 0, "level": "review" },
         "Reading": { "mastery": 0, "level": "review" },
-        "Writing": { "mastery": 0, "level": "review" },
+        "Writing/Grammar": { "mastery": 0, "level": "review" },
         "Phonics": { "mastery": 0, "level": "review" },
         "Spelling": { "mastery": 0, "level": "review" },
+        "Vocabulary": { "mastery": 0, "level": "review" },
         "Science": { "mastery": 0, "level": "review" },
-        "Social Studies": { "mastery": 0, "level": "review" }
+        "Social Studies": { "mastery": 0, "level": "review" },
+        "Black History": { "mastery": 0, "level": "review" },
+        "Anatomy & Physiology": { "mastery": 0, "level": "review" }
       },
       "electives": {
         "Art History": { "enrolled": false, "course": "", "mastery": 0 },
@@ -29,8 +32,19 @@
         "Farm & Agriculture": { "enrolled": false, "course": "", "mastery": 0 }
       },
       "assessmentStatus": {
-        "grade-k": "pending",
-        "grade-1": "pending"
+        "grade-k": {
+          "mathematics": "pending",
+          "reading": "pending",
+          "science": "pending",
+          "social-studies": "pending"
+        },
+        "grade-1": {
+          "mathematics": "pending",
+          "reading": "pending",
+          "writing": "pending",
+          "science": "pending",
+          "social-studies": "pending"
+        }
       },
       "createdAt": "2026-05-24"
     },
@@ -45,10 +59,13 @@
       "subjects": {
         "Mathematics": { "mastery": 0, "level": "review" },
         "Reading": { "mastery": 0, "level": "review" },
-        "Writing": { "mastery": 0, "level": "review" },
+        "Writing/Grammar": { "mastery": 0, "level": "review" },
         "Spelling": { "mastery": 0, "level": "review" },
+        "Vocabulary": { "mastery": 0, "level": "review" },
         "Science": { "mastery": 0, "level": "review" },
-        "Social Studies": { "mastery": 0, "level": "review" }
+        "Social Studies": { "mastery": 0, "level": "review" },
+        "Black History": { "mastery": 0, "level": "review" },
+        "Anatomy & Physiology": { "mastery": 0, "level": "review" }
       },
       "electives": {
         "Art History": { "enrolled": false, "course": "", "mastery": 0 },
@@ -62,8 +79,20 @@
         "Farm & Agriculture": { "enrolled": false, "course": "", "mastery": 0 }
       },
       "assessmentStatus": {
-        "grade-3": "pending",
-        "grade-4": "pending"
+        "grade-3": {
+          "mathematics": "pending",
+          "reading": "pending",
+          "writing": "pending",
+          "science": "pending",
+          "social-studies": "pending"
+        },
+        "grade-4": {
+          "mathematics": "pending",
+          "reading": "pending",
+          "writing": "pending",
+          "science": "pending",
+          "social-studies": "pending"
+        }
       },
       "createdAt": "2026-05-24"
     }

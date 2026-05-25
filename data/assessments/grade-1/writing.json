@@ -1,0 +1,28 @@
+{
+  "grade": "1",
+  "subject": "Writing",
+  "title": "1st Grade Writing & Language Assessment",
+  "teks": "1.11, 1.12, 1.13",
+  "questions": [
+    { "id": "1-w-01", "text": "Which sentence is written CORRECTLY?", "type": "multiple-choice", "options": ["my dog likes to run.", "My dog likes to run.", "My Dog Likes To Run.", "my Dog likes to run."], "answer": "My dog likes to run.", "teks": "1.11A", "skill": "capitalization" },
+    { "id": "1-w-02", "text": "Which sentence ends with the RIGHT punctuation for a QUESTION?", "type": "multiple-choice", "options": ["Where is my hat.", "Where is my hat!", "Where is my hat?", "where is my hat?"], "answer": "Where is my hat?", "teks": "1.11B", "skill": "end-punctuation" },
+    { "id": "1-w-03", "text": "Which word is a NOUN (person, place, or thing)?", "type": "multiple-choice", "options": ["run", "happy", "farm", "quickly"], "answer": "farm", "teks": "1.12A", "skill": "nouns" },
+    { "id": "1-w-04", "text": "Which word is a VERB (action word)?", "type": "multiple-choice", "options": ["tree", "blue", "house", "jump"], "answer": "jump", "teks": "1.12B", "skill": "verbs" },
+    { "id": "1-w-05", "text": "Which word is an ADJECTIVE (describing word)?", "type": "multiple-choice", "options": ["ran", "soft", "cow", "over"], "answer": "soft", "teks": "1.12C", "skill": "adjectives" },
+    { "id": "1-w-06", "text": "Which sentence has CORRECT capitalization?", "type": "multiple-choice", "options": ["we live in texas.", "We Live In Texas.", "We live in Texas.", "We live in texas."], "answer": "We live in Texas.", "teks": "1.11A", "skill": "proper-nouns-capitalization" },
+    { "id": "1-w-07", "text": "Which of these is a COMPLETE sentence?", "type": "multiple-choice", "options": ["The big brown", "Runs fast every day", "The goat ate the grass.", "Jumping over the fence"], "answer": "The goat ate the grass.", "teks": "1.13A", "skill": "complete-sentences" },
+    { "id": "1-w-08", "text": "In the sentence 'She RUNS to the barn every morning,' what tense is the verb RUNS?", "type": "multiple-choice", "options": ["Past tense", "Present tense", "Future tense", "No tense"], "answer": "Present tense", "teks": "1.12B", "skill": "verb-tense" },
+    { "id": "1-w-09", "text": "Which sentence is in the PAST tense?", "type": "multiple-choice", "options": ["She will feed the goats.", "She feeds the goats.", "She fed the goats.", "She is feeding the goats."], "answer": "She fed the goats.", "teks": "1.12B", "skill": "past-tense" },
+    { "id": "1-w-10", "text": "Which word BEST completes the sentence: 'The puppy is ___ and fluffy.'", "type": "multiple-choice", "options": ["run", "soft", "jump", "eat"], "answer": "soft", "teks": "1.12C", "skill": "adjectives-in-context" },
+    { "id": "1-w-11", "text": "Which group of words tells WHEN something happens?", "type": "multiple-choice", "options": ["the red barn", "my happy dog", "every morning", "soft and warm"], "answer": "every morning", "teks": "1.13B", "skill": "time-words" },
+    { "id": "1-w-12", "text": "Which sentence uses the word 'and' to JOIN two ideas?", "type": "multiple-choice", "options": ["The cow is brown.", "But the pig was pink.", "The horse ran fast and jumped the fence.", "She went to the barn."], "answer": "The horse ran fast and jumped the fence.", "teks": "1.13C", "skill": "conjunctions" },
+    { "id": "1-w-13", "text": "A TOPIC SENTENCE tells the reader ___", "type": "multiple-choice", "options": ["a detail about the subject", "what the whole paragraph is about", "how the story ends", "who wrote the paragraph"], "answer": "what the whole paragraph is about", "teks": "1.13D", "skill": "topic-sentence" },
+    { "id": "1-w-14", "text": "Which sentence would be a good DETAIL sentence to follow: 'Farms are very busy places.'?", "type": "multiple-choice", "options": ["I like ice cream.", "Farmers wake up early to care for their animals.", "The sky is blue.", "Dogs can learn many tricks."], "answer": "Farmers wake up early to care for their animals.", "teks": "1.13D", "skill": "supporting-details" },
+    { "id": "1-w-15", "text": "Which of these is a PROPER NOUN that needs a capital letter?", "type": "multiple-choice", "options": ["city", "river", "texas", "school"], "answer": "texas", "teks": "1.11A", "skill": "proper-nouns" },
+    { "id": "1-w-16", "text": "Which sentence uses CORRECT spelling?", "type": "multiple-choice", "options": ["The cat iz slepping.", "The cat is sleeping.", "The kat is sleping.", "The cat is slepeing."], "answer": "The cat is sleeping.", "teks": "1.11C", "skill": "spelling-conventions" },
+    { "id": "1-w-17", "text": "Which word is spelled CORRECTLY for 'a large body of water'?", "type": "multiple-choice", "options": ["laik", "laic", "lake", "layk"], "answer": "lake", "teks": "1.11C", "skill": "spelling" },
+    { "id": "1-w-18", "text": "Which connecting word shows ORDER of events?", "type": "multiple-choice", "options": ["because", "but", "first", "very"], "answer": "first", "teks": "1.13B", "skill": "transition-words" },
+    { "id": "1-w-19", "text": "Read: 'My favorite animal is a horse. Horses are strong and beautiful. I hope to ride one someday.' What type of writing is this?", "type": "multiple-choice", "options": ["Instructions/how-to", "Personal narrative", "Informational report", "Opinion writing"], "answer": "Opinion writing", "teks": "1.13E", "skill": "writing-types" },
+    { "id": "1-w-20", "text": "Which sentence has CORRECT subject-verb agreement?", "type": "multiple-choice", "options": ["The chickens runs fast.", "The chicken run fast.", "The chickens run fast.", "The chickens running fast."], "answer": "The chickens run fast.", "teks": "1.12B", "skill": "subject-verb-agreement" }
+  ]
+}

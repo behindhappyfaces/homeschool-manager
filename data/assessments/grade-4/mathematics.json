@@ -1,0 +1,33 @@
+{
+  "grade": "4",
+  "subject": "Mathematics",
+  "title": "4th Grade Mathematics Assessment (STAAR-aligned)",
+  "teks": "4.2, 4.3, 4.4, 4.5, 4.6, 4.7, 4.8, 4.9",
+  "questions": [
+    { "id": "4-m-01", "text": "What is 347 × 6?", "type": "multiple-choice", "options": ["2,082", "2,082", "2,182", "2,442"], "answer": "2,082", "teks": "4.4D", "skill": "multiplication-3-digit" },
+    { "id": "4-m-02", "text": "What is 1,248 ÷ 4?", "type": "multiple-choice", "options": ["302", "312", "322", "412"], "answer": "312", "teks": "4.4F", "skill": "division-4-digit" },
+    { "id": "4-m-03", "text": "A rancher has 1,584 acres of land divided equally among 4 children. How many acres does each child receive?", "type": "multiple-choice", "options": ["386", "396", "406", "416"], "answer": "396", "teks": "4.4H", "skill": "division-word-problem" },
+    { "id": "4-m-04", "text": "Which fraction is EQUIVALENT to 3/4?", "type": "multiple-choice", "options": ["6/10", "9/12", "6/8", "Both 9/12 and 6/8"], "answer": "Both 9/12 and 6/8", "teks": "4.3C", "skill": "equivalent-fractions" },
+    { "id": "4-m-05", "text": "Compare: 5/8 ___ 3/4. Which symbol belongs in the blank?", "type": "multiple-choice", "options": [">", "<", "=", "Cannot determine"], "answer": "<", "teks": "4.3D", "skill": "comparing-fractions" },
+    { "id": "4-m-06", "text": "What is 2/5 + 2/5?", "type": "multiple-choice", "options": ["4/10", "4/5", "1", "2/5"], "answer": "4/5", "teks": "4.3E", "skill": "adding-fractions-like-denominator" },
+    { "id": "4-m-07", "text": "What is 3/4 - 1/4?", "type": "multiple-choice", "options": ["1/4", "2/4", "2/8", "1/2"], "answer": "2/4", "teks": "4.3E", "skill": "subtracting-fractions-like-denominator" },
+    { "id": "4-m-08", "text": "What is the value of 4.27 + 2.58?", "type": "multiple-choice", "options": ["6.75", "6.85", "6.95", "7.05"], "answer": "6.85", "teks": "4.4A", "skill": "decimal-addition" },
+    { "id": "4-m-09", "text": "Which decimal is equivalent to 3/10?", "type": "multiple-choice", "options": ["0.03", "0.3", "3.0", "0.003"], "answer": "0.3", "teks": "4.2G", "skill": "fractions-decimals" },
+    { "id": "4-m-10", "text": "What is the AREA of a rectangle that is 12 feet long and 7 feet wide?", "type": "multiple-choice", "options": ["38 sq ft", "74 sq ft", "84 sq ft", "96 sq ft"], "answer": "84 sq ft", "teks": "4.5C", "skill": "area-rectangle" },
+    { "id": "4-m-11", "text": "A rectangular garden is 15 meters long and 9 meters wide. What is its PERIMETER?", "type": "multiple-choice", "options": ["24 m", "48 m", "105 m", "135 m"], "answer": "48 m", "teks": "4.5D", "skill": "perimeter" },
+    { "id": "4-m-12", "text": "What is the VALUE of the digit 7 in the number 3,742,195?", "type": "multiple-choice", "options": ["7", "700", "7,000", "700,000"], "answer": "700,000", "teks": "4.2A", "skill": "place-value-millions" },
+    { "id": "4-m-13", "text": "Which set of numbers is in ORDER from LEAST to GREATEST?", "type": "multiple-choice", "options": ["4,821 / 4,182 / 4,281", "4,182 / 4,281 / 4,821", "4,821 / 4,281 / 4,182", "4,281 / 4,182 / 4,821"], "answer": "4,182 / 4,281 / 4,821", "teks": "4.2C", "skill": "ordering-numbers" },
+    { "id": "4-m-14", "text": "An angle that measures EXACTLY 90 degrees is called a ___", "type": "multiple-choice", "options": ["acute angle", "obtuse angle", "right angle", "straight angle"], "answer": "right angle", "teks": "4.6C", "skill": "angles-types" },
+    { "id": "4-m-15", "text": "An angle that measures MORE than 90 degrees is called a(n) ___ angle.", "type": "multiple-choice", "options": ["acute", "obtuse", "right", "straight"], "answer": "obtuse", "teks": "4.6C", "skill": "angles-obtuse" },
+    { "id": "4-m-16", "text": "The farm sold eggs for 5 weeks. Weekly sales were: 240, 185, 310, 265, 200. What was the TOTAL number of eggs sold?", "type": "multiple-choice", "options": ["1,100", "1,200", "1,300", "1,400"], "answer": "1,200", "teks": "4.4B", "skill": "addition-multi-step" },
+    { "id": "4-m-17", "text": "What is 5,000 - 2,347?", "type": "multiple-choice", "options": ["2,543", "2,643", "2,653", "3,347"], "answer": "2,653", "teks": "4.4A", "skill": "subtraction-regrouping" },
+    { "id": "4-m-18", "text": "A line of symmetry divides a shape into two ___", "type": "multiple-choice", "options": ["unequal parts", "equal halves that mirror each other", "triangles", "rectangles"], "answer": "equal halves that mirror each other", "teks": "4.6B", "skill": "symmetry" },
+    { "id": "4-m-19", "text": "There are 12 inches in one foot. How many inches are in 7 feet?", "type": "multiple-choice", "options": ["74 inches", "82 inches", "84 inches", "96 inches"], "answer": "84 inches", "teks": "4.8A", "skill": "measurement-conversion" },
+    { "id": "4-m-20", "text": "A stem-and-leaf plot shows data. What is the MEDIAN of this set: 12, 15, 18, 21, 25?", "type": "multiple-choice", "options": ["15", "17", "18", "21"], "answer": "18", "teks": "4.9A", "skill": "median" },
+    { "id": "4-m-21", "text": "Rosa earns $8.50 per hour helping on the farm. She works 6 hours. How much does she earn TOTAL?", "type": "multiple-choice", "options": ["$48.00", "$51.00", "$54.00", "$56.00"], "answer": "$51.00", "teks": "4.4H", "skill": "money-multiplication" },
+    { "id": "4-m-22", "text": "Which property is shown? 4 × (3 + 5) = (4 × 3) + (4 × 5)", "type": "multiple-choice", "options": ["Commutative property", "Associative property", "Distributive property", "Identity property"], "answer": "Distributive property", "teks": "4.4C", "skill": "distributive-property" },
+    { "id": "4-m-23", "text": "A number is PRIME if it ___", "type": "multiple-choice", "options": ["can be divided evenly by many numbers", "has exactly two factors: 1 and itself", "is always an odd number", "ends in 1, 3, 7, or 9"], "answer": "has exactly two factors: 1 and itself", "teks": "4.4E", "skill": "prime-numbers" },
+    { "id": "4-m-24", "text": "Which of the following is a PRIME number?", "type": "multiple-choice", "options": ["9", "15", "17", "21"], "answer": "17", "teks": "4.4E", "skill": "identify-prime" },
+    { "id": "4-m-25", "text": "Estimate by rounding to the nearest thousand: 4,821 × 3 ≈ ?", "type": "multiple-choice", "options": ["12,000", "14,000", "15,000", "18,000"], "answer": "15,000", "teks": "4.4B", "skill": "estimation" }
+  ]
+}

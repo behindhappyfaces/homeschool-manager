@@ -1,0 +1,28 @@
+{
+  "grade": "K",
+  "subject": "Social Studies",
+  "title": "Kindergarten Social Studies Assessment",
+  "teks": "K.1, K.2, K.3, K.4, K.5, K.12, K.13",
+  "questions": [
+    { "id": "k-ss-01", "text": "Which is a RULE we follow at school?", "type": "multiple-choice", "options": ["Run in the hallways", "Listen when the teacher talks", "Take others' things", "Yell indoors"], "answer": "Listen when the teacher talks", "teks": "K.11A", "skill": "rules-responsibilities" },
+    { "id": "k-ss-02", "text": "Why do we have RULES?", "type": "multiple-choice", "options": ["To make things boring", "To keep people safe and treat others fairly", "So only some people can play", "To stop people from having fun"], "answer": "To keep people safe and treat others fairly", "teks": "K.11A", "skill": "rules-responsibilities" },
+    { "id": "k-ss-03", "text": "A FAMILY is a group of people who ___", "type": "multiple-choice", "options": ["work at the same job", "live together and care for each other", "go to the same school", "play the same sport"], "answer": "live together and care for each other", "teks": "K.1A", "skill": "family-community" },
+    { "id": "k-ss-04", "text": "The American FLAG has how many stripes?", "type": "multiple-choice", "options": ["10", "12", "13", "50"], "answer": "13", "teks": "K.13A", "skill": "american-symbols" },
+    { "id": "k-ss-05", "text": "The stars on the American flag represent ___", "type": "multiple-choice", "options": ["the original 13 colonies", "the 50 states", "the presidents", "the wars we won"], "answer": "the 50 states", "teks": "K.13A", "skill": "american-symbols" },
+    { "id": "k-ss-06", "text": "The STATUE OF LIBERTY is a symbol of ___", "type": "multiple-choice", "options": ["war", "freedom", "farming", "money"], "answer": "freedom", "teks": "K.13A", "skill": "american-symbols" },
+    { "id": "k-ss-07", "text": "Food and clothing are examples of ___", "type": "multiple-choice", "options": ["wants", "needs", "toys", "rules"], "answer": "needs", "teks": "K.8A", "skill": "needs-wants" },
+    { "id": "k-ss-08", "text": "A bicycle and a video game are examples of ___", "type": "multiple-choice", "options": ["needs", "rules", "wants", "work"], "answer": "wants", "teks": "K.8A", "skill": "needs-wants" },
+    { "id": "k-ss-09", "text": "What do we call the leader of our country?", "type": "multiple-choice", "options": ["Mayor", "Governor", "President", "Judge"], "answer": "President", "teks": "K.12A", "skill": "government-leaders" },
+    { "id": "k-ss-10", "text": "The Pledge of Allegiance is said to honor the ___", "type": "multiple-choice", "options": ["President", "American flag", "school", "teacher"], "answer": "American flag", "teks": "K.13B", "skill": "american-symbols" },
+    { "id": "k-ss-11", "text": "A COMMUNITY is ___", "type": "multiple-choice", "options": ["only your family", "a group of people living in the same area", "a place to buy food", "a type of animal"], "answer": "a group of people living in the same area", "teks": "K.2A", "skill": "community" },
+    { "id": "k-ss-12", "text": "Which person HELPS keep your community safe?", "type": "multiple-choice", "options": ["Police officer", "Chef", "Farmer", "Artist"], "answer": "Police officer", "teks": "K.3A", "skill": "community-helpers" },
+    { "id": "k-ss-13", "text": "A doctor is a community helper who ___", "type": "multiple-choice", "options": ["fixes cars", "builds houses", "helps people stay healthy", "grows food"], "answer": "helps people stay healthy", "teks": "K.3A", "skill": "community-helpers" },
+    { "id": "k-ss-14", "text": "A farmer is important because farmers ___", "type": "multiple-choice", "options": ["drive buses", "grow food for people to eat", "fight fires", "teach school"], "answer": "grow food for people to eat", "teks": "K.3A", "skill": "community-helpers" },
+    { "id": "k-ss-15", "text": "A MAP is a ___", "type": "multiple-choice", "options": ["type of food", "drawing that shows places", "type of animal", "kind of school rule"], "answer": "drawing that shows places", "teks": "K.4A", "skill": "maps-geography" },
+    { "id": "k-ss-16", "text": "What do we call money we EARN for doing work?", "type": "multiple-choice", "options": ["Needs", "Wants", "Income/wages", "Rules"], "answer": "Income/wages", "teks": "K.8B", "skill": "economics-basic" },
+    { "id": "k-ss-17", "text": "George Washington was the FIRST ___", "type": "multiple-choice", "options": ["King of America", "President of the United States", "Mayor of Texas", "Governor of Virginia"], "answer": "President of the United States", "teks": "K.12B", "skill": "historical-figures" },
+    { "id": "k-ss-18", "text": "TEXAS is the name of ___", "type": "multiple-choice", "options": ["our city", "our neighborhood", "our state", "our country"], "answer": "our state", "teks": "K.4B", "skill": "geography-texas" },
+    { "id": "k-ss-19", "text": "The UNITED STATES is our ___", "type": "multiple-choice", "options": ["city", "state", "country", "continent"], "answer": "country", "teks": "K.4B", "skill": "geography-usa" },
+    { "id": "k-ss-20", "text": "We VOTE to make decisions in a fair way. Voting means ___", "type": "multiple-choice", "options": ["arguing until someone wins", "choosing the loudest person", "each person gets to make a choice and the most choices win", "letting only adults decide"], "answer": "each person gets to make a choice and the most choices win", "teks": "K.11B", "skill": "civic-participation" }
+  ]
+}

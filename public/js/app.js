@@ -196,17 +196,33 @@ async function loadStudentDetail() {
       </div>
     `).join('');
 
-    const assessmentRows = Object.entries(s.assessmentStatus).map(([grade, status]) => {
-      const gradeNum = grade.replace('grade-', '');
-      const statusBadge = `<span class="badge badge-${status === 'completed' ? 'completed' : 'pending'}">${status}</span>`;
-      const actionBtn = status === 'pending'
-        ? `<button class="btn btn-secondary btn-sm" data-sid="${h(s.id)}" data-grade="${h(gradeNum)}" onclick="startAssessment(this.dataset.sid, this.dataset.grade)">Take Assessment</button>`
-        : '<span class="text-muted text-sm">✓ Done</span>';
+    const SUBJ_SHORT = { mathematics:'Math', reading:'Reading', writing:'Writing/Grammar', science:'Science', 'social-studies':'Social Studies' };
+    const assessmentRows = Object.entries(s.assessmentStatus).map(([gradeKey, subjects]) => {
+      const gradeNum = gradeKey.replace('grade-', '');
+      const gradeLabel = gradeNum === 'k' ? 'Kindergarten' : `Grade ${gradeNum}`;
+      const completedCount = Object.values(subjects).filter(v => v === 'completed').length;
+      const totalCount = Object.keys(subjects).length;
+      const subjectRows = Object.entries(subjects).map(([subj, status]) => {
+        const isDone = status === 'completed';
+        const subjLabel = SUBJ_SHORT[subj] || subj;
+        const btn = isDone
+          ? `<span style="color:var(--green);font-size:13px">✓</span>`
+          : `<button class="btn btn-secondary btn-sm" onclick="navigate('assessments')" style="padding:2px 8px;font-size:11px">Take</button>`;
+        return `
+          <div class="flex items-center gap-2" style="margin-bottom:4px;padding:4px 0;border-bottom:1px solid var(--border)">
+            <span class="text-sm" style="flex:1">${h(subjLabel)}</span>
+            <span class="badge badge-${isDone ? 'completed' : 'pending'}" style="font-size:10px">${isDone ? 'Done' : 'Pending'}</span>
+            ${btn}
+          </div>
+        `;
+      }).join('');
       return `
-        <div class="flex items-center gap-3" style="margin-bottom:8px">
-          <span class="text-sm">Grade ${h(gradeNum === 'k' ? 'K' : gradeNum)}</span>
-          ${statusBadge}
-          ${actionBtn}
+        <div style="margin-bottom:16px">
+          <div class="flex items-center gap-3 mb-2">
+            <span class="font-bold text-sm">${h(gradeLabel)}</span>
+            <span class="text-muted text-sm">${completedCount}/${totalCount} complete</span>
+          </div>
+          ${subjectRows}
         </div>
       `;
     }).join('');
@@ -424,6 +440,14 @@ function closeModal(id) {
 }
 
 // Assessments
+const ASSESSMENT_SUBJECT_LABELS = {
+  'mathematics': 'Mathematics',
+  'reading': 'Reading',
+  'writing': 'Writing/Grammar',
+  'science': 'Science',
+  'social-studies': 'Social Studies'
+};
+
 async function loadAssessmentHome() {
   students = await api('/students');
   document.getElementById('assessment-quiz').classList.add('hidden');
@@ -431,27 +455,48 @@ async function loadAssessmentHome() {
   document.getElementById('assessment-home').classList.remove('hidden');
 
   document.getElementById('assessment-home').innerHTML = students.map(s => {
-    const reviewLabel = s.reviewGrade === 0 ? 'K' : s.reviewGrade;
-    const assessmentCards = Object.entries(s.assessmentStatus).map(([grade, status]) => {
-      const gradeNum = grade.replace('grade-', '');
-      const isReview = (gradeNum === String(s.reviewGrade)) || (gradeNum === 'k' && s.reviewGrade === 0);
-      const borderColor = status === 'completed' ? 'var(--green)' : 'var(--border)';
-      const actionBtn = status === 'pending'
-        ? `<div class="flex gap-2">
-            <button class="btn btn-primary" data-sid="${h(s.id)}" data-grade="${h(gradeNum)}" onclick="startAssessment(this.dataset.sid, this.dataset.grade)">Start Online</button>
-            <a class="btn btn-secondary" href="/print/assessment/${h(gradeNum)}?studentId=${h(s.id)}" target="_blank" style="text-decoration:none">🖨️ Print</a>
-          </div>`
-        : `<div class="flex gap-2">
-            <button class="btn btn-secondary btn-sm" data-sid="${h(s.id)}" data-grade="${h(gradeNum)}" onclick="viewAssessmentResults(this.dataset.sid, this.dataset.grade)">View Results</button>
-            <button class="btn btn-secondary btn-sm" data-sid="${h(s.id)}" data-grade="${h(gradeNum)}" onclick="startAssessment(this.dataset.sid, this.dataset.grade)">Retake</button>
-            <a class="btn btn-secondary btn-sm" href="/print/assessment/${h(gradeNum)}?studentId=${h(s.id)}" target="_blank" style="text-decoration:none">🖨️</a>
-          </div>`;
+    const reviewKey = s.reviewGrade === 0 ? 'k' : String(s.reviewGrade);
+
+    const gradeSections = Object.entries(s.assessmentStatus).map(([gradeKey, subjects]) => {
+      const gradeNum = gradeKey.replace('grade-', '');
+      const isReview = gradeNum === reviewKey;
+      const gradeLabel = gradeNum === 'k' ? 'Kindergarten' : `Grade ${gradeNum}`;
+      const typeLabel = isReview ? 'Review' : 'Current Year';
+      const completedCount = Object.values(subjects).filter(v => v === 'completed').length;
+      const totalCount = Object.keys(subjects).length;
+
+      const subjectCards = Object.entries(subjects).map(([subjectKey, status]) => {
+        const subjectLabel = ASSESSMENT_SUBJECT_LABELS[subjectKey] || subjectKey;
+        const isDone = status === 'completed';
+        const borderColor = isDone ? 'var(--green)' : 'var(--border)';
+        const actionHtml = isDone
+          ? `<div class="flex gap-2" style="flex-wrap:wrap">
+              <button class="btn btn-secondary btn-sm" data-sid="${h(s.id)}" data-grade="${h(gradeNum)}" data-subj="${h(subjectKey)}" onclick="viewAssessmentResults(this.dataset.sid,this.dataset.grade,this.dataset.subj)">Results</button>
+              <button class="btn btn-secondary btn-sm" data-sid="${h(s.id)}" data-grade="${h(gradeNum)}" data-subj="${h(subjectKey)}" onclick="startAssessment(this.dataset.sid,this.dataset.grade,this.dataset.subj)">Retake</button>
+            </div>`
+          : `<div class="flex gap-2" style="flex-wrap:wrap">
+              <button class="btn btn-primary btn-sm" data-sid="${h(s.id)}" data-grade="${h(gradeNum)}" data-subj="${h(subjectKey)}" onclick="startAssessment(this.dataset.sid,this.dataset.grade,this.dataset.subj)">Start</button>
+              <a class="btn btn-secondary btn-sm" href="/print/assessment/${h(gradeNum)}/${h(subjectKey)}?studentId=${h(s.id)}" target="_blank" style="text-decoration:none">🖨️</a>
+            </div>`;
+        return `
+          <div style="border:1px solid ${borderColor};border-radius:10px;padding:14px;background:var(--surface2)">
+            <div class="font-bold text-sm mb-2">${h(subjectLabel)}</div>
+            <div class="mb-3"><span class="badge badge-${isDone ? 'completed' : 'pending'}">${isDone ? 'Done' : 'Pending'}</span></div>
+            ${actionHtml}
+          </div>
+        `;
+      }).join('');
+
       return `
-        <div class="card" style="border-color:${borderColor}">
-          <div class="section-title">Grade ${h(gradeNum === 'k' ? 'K' : gradeNum)} Assessment</div>
-          <div class="text-muted text-sm mb-4">${isReview ? '📖 Review Assessment' : '📝 Current Grade Assessment'}</div>
-          <div class="mb-4"><span class="badge badge-${status === 'completed' ? 'completed' : 'pending'}">${h(status)}</span></div>
-          ${actionBtn}
+        <div class="mb-5">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="section-title" style="margin:0">${h(gradeLabel)}</div>
+            <span class="badge badge-${isReview ? 'pending' : 'completed'}" style="font-size:11px">${h(typeLabel)}</span>
+            <span class="text-muted text-sm">${completedCount}/${totalCount} done</span>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px">
+            ${subjectCards}
+          </div>
         </div>
       `;
     }).join('');
@@ -462,20 +507,20 @@ async function loadAssessmentHome() {
           <div class="student-avatar">${h(s.avatar)}</div>
           <div>
             <div class="student-name">${h(s.name)}</div>
-            <div class="student-meta">Grade ${h(s.currentGrade)} — review Grade ${h(reviewLabel)}</div>
+            <div class="student-meta">Grade ${h(s.currentGrade)} → Entering Grade ${h(s.enteringGrade)}</div>
           </div>
         </div>
-        <div class="grid-2">${assessmentCards}</div>
+        ${gradeSections}
       </div>
     `;
   }).join('');
 }
 
-async function startAssessment(studentId, grade) {
-  const questions = await api(`/assessments/questions/${encodeURIComponent(grade)}`);
-  if (questions.error) { alert('Assessment not found'); return; }
+async function startAssessment(studentId, grade, subject) {
+  const data = await api(`/assessments/questions/${encodeURIComponent(grade)}/${encodeURIComponent(subject)}`);
+  if (data.error) { alert('Assessment not found'); return; }
 
-  currentAssessment = { studentId, grade, questions };
+  currentAssessment = { studentId, grade, subject, questions: data.questions, title: data.title };
   assessmentAnswers = {};
 
   document.getElementById('assessment-home').classList.add('hidden');
@@ -483,37 +528,34 @@ async function startAssessment(studentId, grade) {
   document.getElementById('assessment-quiz').classList.remove('hidden');
 
   const student = students.find(s => s.id === studentId);
-  const total = questions.sections.reduce((sum, s) => sum + s.questions.length, 0);
+  const total = data.questions.length;
   const quizEl = document.getElementById('assessment-quiz');
 
-  const sectionHtml = questions.sections.map(section => {
-    const qHtml = section.questions.map(q => {
-      const optHtml = q.options.map(opt => `
-        <div class="answer-option" data-qid="${h(q.id)}" data-answer="${h(opt)}" onclick="selectAnswer(this)">
-          <div class="answer-radio"></div>
-          <span>${h(opt)}</span>
-        </div>
-      `).join('');
-      return `
-        <div class="assessment-question" id="q-wrap-${h(q.id)}">
-          <div class="question-text">${h(q.text)}</div>
-          ${optHtml}
-        </div>
-      `;
-    }).join('');
-    return `<div class="section-header"><div class="section-title">📚 ${h(section.subject)}</div></div>${qHtml}`;
+  const qHtml = data.questions.map((q, idx) => {
+    const optHtml = q.options.map(opt => `
+      <div class="answer-option" data-qid="${h(q.id)}" data-answer="${h(opt)}" onclick="selectAnswer(this)">
+        <div class="answer-radio"></div>
+        <span>${h(opt)}</span>
+      </div>
+    `).join('');
+    return `
+      <div class="assessment-question" id="q-wrap-${h(q.id)}">
+        <div class="question-text"><span class="text-muted text-sm" style="margin-right:8px">${idx + 1}.</span>${h(q.text)}</div>
+        ${optHtml}
+      </div>
+    `;
   }).join('');
 
   quizEl.innerHTML = `
     <div class="page-header">
       <div>
-        <div class="page-title">Grade ${h(grade)} Assessment</div>
+        <div class="page-title">${h(data.title)}</div>
         <div class="page-subtitle">${h(student?.name || '')} · ${total} questions</div>
       </div>
       <button class="btn btn-secondary" onclick="loadAssessmentHome()">← Back</button>
     </div>
     <div class="assessment-progress"><span id="quiz-progress">0 of ${total} answered</span></div>
-    ${sectionHtml}
+    ${qHtml}
     <div class="flex gap-3 mt-6">
       <button class="btn btn-primary" id="submit-assessment-btn" onclick="submitAssessment()">Submit Assessment</button>
       <button class="btn btn-secondary" onclick="loadAssessmentHome()">Cancel</button>
@@ -529,12 +571,12 @@ function selectAnswer(el) {
   el.classList.add('selected');
   assessmentAnswers[questionId] = answer;
 
-  const total = currentAssessment.questions.sections.reduce((sum, s) => sum + s.questions.length, 0);
+  const total = currentAssessment.questions.length;
   document.getElementById('quiz-progress').textContent = `${Object.keys(assessmentAnswers).length} of ${total} answered`;
 }
 
 async function submitAssessment() {
-  const total = currentAssessment.questions.sections.reduce((sum, s) => sum + s.questions.length, 0);
+  const total = currentAssessment.questions.length;
   if (Object.keys(assessmentAnswers).length < total) {
     if (!confirm(`You've answered ${Object.keys(assessmentAnswers).length} of ${total} questions. Submit anyway?`)) return;
   }
@@ -548,6 +590,7 @@ async function submitAssessment() {
     body: JSON.stringify({
       studentId: currentAssessment.studentId,
       grade: currentAssessment.grade,
+      subject: currentAssessment.subject,
       answers: assessmentAnswers
     })
   });
@@ -559,34 +602,34 @@ function showAssessmentResults(result, aiFeedback) {
   document.getElementById('assessment-quiz').classList.add('hidden');
   document.getElementById('assessment-results-view').classList.remove('hidden');
 
-  const aiFeedbackEl = document.getElementById('assessment-results-view');
+  const el = document.getElementById('assessment-results-view');
 
-  const sectionCards = result.sections.map(s => `
-    <div class="card">
-      <div class="mastery-label mb-2">
-        <span class="font-bold">${h(s.subject)}</span>
-        <span class="badge ${getBadgeClass(s.score)}">${s.score}%</span>
-      </div>
-      ${masteryBarHtml(s.score)}
-      <div class="text-muted text-sm" style="margin-top:6px">${s.correct} of ${s.total} correct</div>
+  const wrongItems = (result.questions || []).filter(q => !q.correct).map(q => `
+    <div style="padding:10px;background:var(--surface2);border-radius:8px;margin-bottom:8px;border-left:3px solid var(--red)">
+      <div class="text-sm font-bold mb-1">Skill: ${h(q.skill || '')}</div>
+      <div class="text-sm text-muted">Your answer: ${h(q.given || '(none)')}</div>
+      <div class="text-sm" style="color:var(--green)">Correct: ${h(q.expected || '')}</div>
     </div>
-  `).join('');
+  `).join('') || '<div class="text-muted text-sm">Perfect score — all correct!</div>';
 
-  aiFeedbackEl.innerHTML = `
+  el.innerHTML = `
     <div class="page-header">
       <div>
         <div class="page-title">Assessment Results</div>
-        <div class="page-subtitle">${h(result.studentName)} · Grade ${h(result.grade)}</div>
+        <div class="page-subtitle">${h(result.studentName)} · ${h(result.subjectLabel || result.subject)} · Grade ${h(result.grade)}</div>
       </div>
       <button class="btn btn-secondary" onclick="loadAssessmentHome()">← Back</button>
     </div>
     <div class="stats-row" style="grid-template-columns:repeat(3,1fr)">
-      <div class="stat-card"><div class="stat-value" style="color:${getMasteryColor(result.overallScore)}">${result.overallScore}%</div><div class="stat-label">Overall Score</div></div>
-      <div class="stat-card"><div class="stat-value">${result.sections.length}</div><div class="stat-label">Subjects Tested</div></div>
-      <div class="stat-card"><div class="stat-value"><span class="badge ${getBadgeClass(result.overallScore)}">${getMasteryLabel(result.overallScore)}</span></div><div class="stat-label">Level</div></div>
+      <div class="stat-card"><div class="stat-value" style="color:${getMasteryColor(result.score)}">${result.score}%</div><div class="stat-label">Score</div></div>
+      <div class="stat-card"><div class="stat-value">${result.correct} / ${result.total}</div><div class="stat-label">Correct</div></div>
+      <div class="stat-card"><div class="stat-value"><span class="badge ${getBadgeClass(result.score)}">${getMasteryLabel(result.score)}</span></div><div class="stat-label">Level</div></div>
     </div>
-    <div class="grid-2 mt-4">${sectionCards}</div>
-    <div class="ai-panel mt-6">
+    <div class="card mt-4">
+      <div class="section-title mb-3">Missed Questions</div>
+      ${wrongItems}
+    </div>
+    <div class="ai-panel mt-4">
       <div class="ai-panel-header">✨ AI Feedback</div>
       <div class="ai-content" id="ai-feedback-text"></div>
     </div>
@@ -601,9 +644,9 @@ function showAssessmentResults(result, aiFeedback) {
   }
 }
 
-async function viewAssessmentResults(studentId, grade) {
+async function viewAssessmentResults(studentId, grade, subject) {
   const results = await api(`/assessments/results/${encodeURIComponent(studentId)}`);
-  const result = results.filter(r => r.grade === grade).pop();
+  const result = results.filter(r => r.grade === grade && r.subject === subject).pop();
   if (!result) { alert('No results found'); return; }
   document.getElementById('assessment-home').classList.add('hidden');
   showAssessmentResults(result, null);

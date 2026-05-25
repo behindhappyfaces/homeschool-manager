@@ -1,0 +1,33 @@
+{
+  "grade": "K",
+  "subject": "Mathematics",
+  "title": "Kindergarten Mathematics Assessment",
+  "teks": "K.2, K.3, K.4, K.5, K.6, K.7, K.8",
+  "questions": [
+    { "id": "k-m-01", "text": "How many apples are there? 🍎🍎🍎🍎🍎", "type": "multiple-choice", "options": ["3", "4", "5", "6"], "answer": "5", "teks": "K.2A", "skill": "counting-to-20" },
+    { "id": "k-m-02", "text": "Which number comes AFTER 7?", "type": "multiple-choice", "options": ["5", "6", "8", "9"], "answer": "8", "teks": "K.2B", "skill": "number-sequence" },
+    { "id": "k-m-03", "text": "Which number comes BEFORE 4?", "type": "multiple-choice", "options": ["2", "3", "5", "6"], "answer": "3", "teks": "K.2B", "skill": "number-sequence" },
+    { "id": "k-m-04", "text": "Which group has MORE? ⭐⭐⭐ or 🌙🌙🌙🌙🌙", "type": "multiple-choice", "options": ["Stars (⭐)", "Moons (🌙)", "They are equal", "I cannot tell"], "answer": "Moons (🌙)", "teks": "K.2G", "skill": "comparing-quantities" },
+    { "id": "k-m-05", "text": "Which group has FEWER? 🐶🐶🐶🐶 or 🐱🐱", "type": "multiple-choice", "options": ["Dogs (🐶)", "Cats (🐱)", "They are equal", "I cannot tell"], "answer": "Cats (🐱)", "teks": "K.2G", "skill": "comparing-quantities" },
+    { "id": "k-m-06", "text": "3 + 2 = ?", "type": "multiple-choice", "options": ["4", "5", "6", "7"], "answer": "5", "teks": "K.3A", "skill": "addition-to-10" },
+    { "id": "k-m-07", "text": "4 + 4 = ?", "type": "multiple-choice", "options": ["6", "7", "8", "9"], "answer": "8", "teks": "K.3A", "skill": "addition-to-10" },
+    { "id": "k-m-08", "text": "5 - 2 = ?", "type": "multiple-choice", "options": ["2", "3", "4", "5"], "answer": "3", "teks": "K.3B", "skill": "subtraction-within-10" },
+    { "id": "k-m-09", "text": "There are 6 chickens on the farm. 2 walk away. How many are left?", "type": "multiple-choice", "options": ["3", "4", "5", "8"], "answer": "4", "teks": "K.3C", "skill": "subtraction-word-problem" },
+    { "id": "k-m-10", "text": "There are 3 goats and 4 sheep. How many animals are there altogether?", "type": "multiple-choice", "options": ["5", "6", "7", "8"], "answer": "7", "teks": "K.3C", "skill": "addition-word-problem" },
+    { "id": "k-m-11", "text": "What is ZERO plus 5?", "type": "multiple-choice", "options": ["0", "4", "5", "6"], "answer": "5", "teks": "K.3A", "skill": "zero-concept" },
+    { "id": "k-m-12", "text": "Which number is the GREATEST? 3, 7, 1, 5", "type": "multiple-choice", "options": ["1", "3", "5", "7"], "answer": "7", "teks": "K.2H", "skill": "comparing-numbers" },
+    { "id": "k-m-13", "text": "Which number is the LEAST? 8, 2, 6, 4", "type": "multiple-choice", "options": ["2", "4", "6", "8"], "answer": "2", "teks": "K.2H", "skill": "comparing-numbers" },
+    { "id": "k-m-14", "text": "What shape has 3 sides?", "type": "multiple-choice", "options": ["Circle", "Square", "Triangle", "Rectangle"], "answer": "Triangle", "teks": "K.6A", "skill": "2D-shapes" },
+    { "id": "k-m-15", "text": "What shape has 4 equal sides?", "type": "multiple-choice", "options": ["Circle", "Square", "Triangle", "Oval"], "answer": "Square", "teks": "K.6A", "skill": "2D-shapes" },
+    { "id": "k-m-16", "text": "A pencil is LONGER than a crayon. A crayon is LONGER than an eraser. Which is SHORTEST?", "type": "multiple-choice", "options": ["Pencil", "Crayon", "Eraser", "They are all the same"], "answer": "Eraser", "teks": "K.7A", "skill": "measurement-comparison" },
+    { "id": "k-m-17", "text": "Which comes NEXT in the pattern? 🔴🔵🔴🔵🔴 ___", "type": "multiple-choice", "options": ["🔴", "🔵", "🟡", "🟢"], "answer": "🔵", "teks": "K.8", "skill": "patterns" },
+    { "id": "k-m-18", "text": "How many sides does a rectangle have?", "type": "multiple-choice", "options": ["2", "3", "4", "5"], "answer": "4", "teks": "K.6A", "skill": "2D-shapes" },
+    { "id": "k-m-19", "text": "Count by 2s: 2, 4, 6, ___", "type": "multiple-choice", "options": ["7", "8", "9", "10"], "answer": "8", "teks": "K.5", "skill": "skip-counting" },
+    { "id": "k-m-20", "text": "There are 10 eggs in a carton. The farmer uses 3. How many eggs are left?", "type": "multiple-choice", "options": ["5", "6", "7", "8"], "answer": "7", "teks": "K.3C", "skill": "subtraction-word-problem" },
+    { "id": "k-m-21", "text": "Which number is between 5 and 9?", "type": "multiple-choice", "options": ["4", "7", "10", "11"], "answer": "7", "teks": "K.2I", "skill": "number-order" },
+    { "id": "k-m-22", "text": "A ball is a 3D shape called a ___", "type": "multiple-choice", "options": ["Cube", "Cone", "Sphere", "Cylinder"], "answer": "Sphere", "teks": "K.6B", "skill": "3D-shapes" },
+    { "id": "k-m-23", "text": "Which container holds MORE? A big bucket or a small cup?", "type": "multiple-choice", "options": ["Small cup", "Big bucket", "They hold the same", "Cannot tell"], "answer": "Big bucket", "teks": "K.7B", "skill": "capacity-comparison" },
+    { "id": "k-m-24", "text": "What is 1 + 0?", "type": "multiple-choice", "options": ["0", "1", "2", "3"], "answer": "1", "teks": "K.3A", "skill": "addition-to-10" },
+    { "id": "k-m-25", "text": "There are 5 flowers. 5 more grow. How many flowers are there now?", "type": "multiple-choice", "options": ["5", "8", "10", "15"], "answer": "10", "teks": "K.3C", "skill": "addition-word-problem" }
+  ]
+}

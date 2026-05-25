@@ -1,0 +1,33 @@
+{
+  "grade": "1",
+  "subject": "Mathematics",
+  "title": "1st Grade Mathematics Assessment",
+  "teks": "1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8",
+  "questions": [
+    { "id": "1-m-01", "text": "What is 8 + 7?", "type": "multiple-choice", "options": ["13", "14", "15", "16"], "answer": "15", "teks": "1.3B", "skill": "addition-within-20" },
+    { "id": "1-m-02", "text": "What is 13 - 6?", "type": "multiple-choice", "options": ["5", "6", "7", "8"], "answer": "7", "teks": "1.3C", "skill": "subtraction-within-20" },
+    { "id": "1-m-03", "text": "What number has 3 tens and 4 ones?", "type": "multiple-choice", "options": ["34", "43", "304", "430"], "answer": "34", "teks": "1.2B", "skill": "place-value" },
+    { "id": "1-m-04", "text": "How many tens are in the number 72?", "type": "multiple-choice", "options": ["2", "7", "12", "72"], "answer": "7", "teks": "1.2B", "skill": "place-value" },
+    { "id": "1-m-05", "text": "Which number is GREATER: 45 or 54?", "type": "multiple-choice", "options": ["45", "54", "They are equal", "Cannot tell"], "answer": "54", "teks": "1.2E", "skill": "comparing-numbers" },
+    { "id": "1-m-06", "text": "Count by 10s: 10, 20, 30, ___", "type": "multiple-choice", "options": ["35", "38", "40", "50"], "answer": "40", "teks": "1.5A", "skill": "skip-counting-10s" },
+    { "id": "1-m-07", "text": "Count by 5s: 5, 10, 15, 20, ___", "type": "multiple-choice", "options": ["22", "23", "24", "25"], "answer": "25", "teks": "1.5A", "skill": "skip-counting-5s" },
+    { "id": "1-m-08", "text": "There are 14 cows in the field. 5 walk into the barn. How many cows are still in the field?", "type": "multiple-choice", "options": ["7", "8", "9", "10"], "answer": "9", "teks": "1.3D", "skill": "subtraction-word-problem" },
+    { "id": "1-m-09", "text": "Maria has 6 eggs. She finds 8 more. How many eggs does she have now?", "type": "multiple-choice", "options": ["12", "13", "14", "15"], "answer": "14", "teks": "1.3D", "skill": "addition-word-problem" },
+    { "id": "1-m-10", "text": "What time does the clock show when the big hand is on 12 and the little hand is on 3?", "type": "multiple-choice", "options": ["12:00", "3:00", "3:30", "12:15"], "answer": "3:00", "teks": "1.7E", "skill": "telling-time" },
+    { "id": "1-m-11", "text": "What time is it when the clock shows half past 7?", "type": "multiple-choice", "options": ["7:00", "7:15", "7:30", "8:00"], "answer": "7:30", "teks": "1.7E", "skill": "telling-time-half-hour" },
+    { "id": "1-m-12", "text": "Which shape has NO straight sides?", "type": "multiple-choice", "options": ["Square", "Triangle", "Circle", "Rectangle"], "answer": "Circle", "teks": "1.6A", "skill": "2D-shapes" },
+    { "id": "1-m-13", "text": "A rectangle has how many sides?", "type": "multiple-choice", "options": ["3", "4", "5", "6"], "answer": "4", "teks": "1.6A", "skill": "2D-shapes" },
+    { "id": "1-m-14", "text": "Which number is between 28 and 32?", "type": "multiple-choice", "options": ["25", "27", "30", "35"], "answer": "30", "teks": "1.2C", "skill": "number-order" },
+    { "id": "1-m-15", "text": "Round to the nearest 10: Is 23 closer to 20 or 30?", "type": "multiple-choice", "options": ["10", "20", "25", "30"], "answer": "20", "teks": "1.2D", "skill": "rounding-tens" },
+    { "id": "1-m-16", "text": "What is 10 + 10 + 10?", "type": "multiple-choice", "options": ["20", "30", "40", "100"], "answer": "30", "teks": "1.3B", "skill": "adding-tens" },
+    { "id": "1-m-17", "text": "A penny is worth ___ cent(s).", "type": "multiple-choice", "options": ["1", "5", "10", "25"], "answer": "1", "teks": "1.4A", "skill": "money-coins" },
+    { "id": "1-m-18", "text": "A dime is worth ___ cents.", "type": "multiple-choice", "options": ["1", "5", "10", "25"], "answer": "10", "teks": "1.4A", "skill": "money-coins" },
+    { "id": "1-m-19", "text": "You have 2 dimes and 1 nickel. How many cents do you have?", "type": "multiple-choice", "options": ["15 cents", "20 cents", "25 cents", "30 cents"], "answer": "25 cents", "teks": "1.4C", "skill": "money-counting" },
+    { "id": "1-m-20", "text": "What comes next? 97, 98, 99, ___", "type": "multiple-choice", "options": ["90", "100", "101", "110"], "answer": "100", "teks": "1.2A", "skill": "counting-to-120" },
+    { "id": "1-m-21", "text": "Which number sentence is TRUE?", "type": "multiple-choice", "options": ["5 + 3 = 9", "7 - 2 = 6", "4 + 6 = 10", "8 - 3 = 6"], "answer": "4 + 6 = 10", "teks": "1.3A", "skill": "number-sentences" },
+    { "id": "1-m-22", "text": "What is the MISSING number? 9 + ___ = 15", "type": "multiple-choice", "options": ["4", "5", "6", "7"], "answer": "6", "teks": "1.3C", "skill": "missing-addend" },
+    { "id": "1-m-23", "text": "Which unit would you use to measure how LONG a pencil is?", "type": "multiple-choice", "options": ["Pounds", "Inches", "Gallons", "Degrees"], "answer": "Inches", "teks": "1.7A", "skill": "measurement-length" },
+    { "id": "1-m-24", "text": "There are 10 oranges. They are put in groups of 2. How many groups are there?", "type": "multiple-choice", "options": ["2", "4", "5", "10"], "answer": "5", "teks": "1.3E", "skill": "equal-groups" },
+    { "id": "1-m-25", "text": "A quarter is worth ___ cents.", "type": "multiple-choice", "options": ["10", "15", "20", "25"], "answer": "25", "teks": "1.4A", "skill": "money-coins" }
+  ]
+}

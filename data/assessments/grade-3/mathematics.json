@@ -1,0 +1,33 @@
+{
+  "grade": "3",
+  "subject": "Mathematics",
+  "title": "3rd Grade Mathematics Assessment (STAAR-aligned)",
+  "teks": "3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8",
+  "questions": [
+    { "id": "3-m-01", "text": "What is 7 × 8?", "type": "multiple-choice", "options": ["48", "54", "56", "64"], "answer": "56", "teks": "3.4D", "skill": "multiplication-facts" },
+    { "id": "3-m-02", "text": "What is 9 × 6?", "type": "multiple-choice", "options": ["45", "54", "63", "72"], "answer": "54", "teks": "3.4D", "skill": "multiplication-facts" },
+    { "id": "3-m-03", "text": "What is 56 ÷ 7?", "type": "multiple-choice", "options": ["6", "7", "8", "9"], "answer": "8", "teks": "3.4H", "skill": "division-facts" },
+    { "id": "3-m-04", "text": "What is 72 ÷ 9?", "type": "multiple-choice", "options": ["6", "7", "8", "9"], "answer": "8", "teks": "3.4H", "skill": "division-facts" },
+    { "id": "3-m-05", "text": "A farmer has 4 rows of corn with 8 stalks in each row. How many corn stalks are there in all?", "type": "multiple-choice", "options": ["24", "28", "32", "36"], "answer": "32", "teks": "3.4K", "skill": "multiplication-word-problem" },
+    { "id": "3-m-06", "text": "A rancher has 48 goats. She puts them equally into 6 pens. How many goats are in each pen?", "type": "multiple-choice", "options": ["6", "7", "8", "9"], "answer": "8", "teks": "3.4K", "skill": "division-word-problem" },
+    { "id": "3-m-07", "text": "What is the VALUE of the 4 in the number 4,826?", "type": "multiple-choice", "options": ["4", "40", "400", "4,000"], "answer": "4,000", "teks": "3.2A", "skill": "place-value" },
+    { "id": "3-m-08", "text": "Round 348 to the nearest HUNDRED.", "type": "multiple-choice", "options": ["300", "340", "350", "400"], "answer": "300", "teks": "3.2C", "skill": "rounding-hundreds" },
+    { "id": "3-m-09", "text": "Round 672 to the nearest TEN.", "type": "multiple-choice", "options": ["600", "670", "680", "700"], "answer": "670", "teks": "3.2C", "skill": "rounding-tens" },
+    { "id": "3-m-10", "text": "What fraction of the shape is shaded if 3 out of 5 equal parts are shaded?", "type": "multiple-choice", "options": ["3/8", "3/5", "5/3", "2/5"], "answer": "3/5", "teks": "3.3A", "skill": "fractions-identify" },
+    { "id": "3-m-11", "text": "Which fraction is equivalent to 1/2?", "type": "multiple-choice", "options": ["2/3", "3/5", "4/8", "3/8"], "answer": "4/8", "teks": "3.3F", "skill": "equivalent-fractions" },
+    { "id": "3-m-12", "text": "Which fraction is GREATER: 3/4 or 2/4?", "type": "multiple-choice", "options": ["2/4", "3/4", "They are equal", "Cannot tell"], "answer": "3/4", "teks": "3.3H", "skill": "comparing-fractions" },
+    { "id": "3-m-13", "text": "What is the PERIMETER of a square with sides that are each 6 inches long?", "type": "multiple-choice", "options": ["12 inches", "18 inches", "24 inches", "36 inches"], "answer": "24 inches", "teks": "3.7B", "skill": "perimeter" },
+    { "id": "3-m-14", "text": "A rectangle is 5 feet long and 3 feet wide. What is its AREA?", "type": "multiple-choice", "options": ["8 sq ft", "15 sq ft", "16 sq ft", "20 sq ft"], "answer": "15 sq ft", "teks": "3.6C", "skill": "area" },
+    { "id": "3-m-15", "text": "What is 456 + 278?", "type": "multiple-choice", "options": ["624", "734", "724", "744"], "answer": "734", "teks": "3.4A", "skill": "addition-3-digit" },
+    { "id": "3-m-16", "text": "What is 503 - 267?", "type": "multiple-choice", "options": ["236", "246", "244", "266"], "answer": "236", "teks": "3.4A", "skill": "subtraction-3-digit" },
+    { "id": "3-m-17", "text": "A store had 325 apples on Monday. By Friday, 148 apples were sold. How many apples are left?", "type": "multiple-choice", "options": ["167", "177", "187", "277"], "answer": "177", "teks": "3.4A", "skill": "subtraction-word-problem" },
+    { "id": "3-m-18", "text": "Look at the number line. Which point is closest to 1/2? (The number line goes from 0 to 1)", "type": "multiple-choice", "options": ["1/4", "2/4", "3/4", "4/4"], "answer": "2/4", "teks": "3.3B", "skill": "fractions-number-line" },
+    { "id": "3-m-19", "text": "A table shows that the farm sold 23 dozen eggs on Monday and 18 dozen on Tuesday. How many dozen total?", "type": "multiple-choice", "options": ["31", "38", "41", "43"], "answer": "41", "teks": "3.4A", "skill": "addition-word-problem" },
+    { "id": "3-m-20", "text": "Which number sentence represents 'A farmer picks 6 baskets with 9 tomatoes each'?", "type": "multiple-choice", "options": ["6 + 9 = 15", "9 - 6 = 3", "6 × 9 = 54", "9 ÷ 6 = 1"], "answer": "6 × 9 = 54", "teks": "3.4E", "skill": "multiplication-representation" },
+    { "id": "3-m-21", "text": "What is the missing number? 8 × ___ = 64", "type": "multiple-choice", "options": ["6", "7", "8", "9"], "answer": "8", "teks": "3.4D", "skill": "missing-factor" },
+    { "id": "3-m-22", "text": "A bar graph shows: Monday-12 visitors, Tuesday-18 visitors, Wednesday-9 visitors. How many MORE visitors came on Tuesday than Wednesday?", "type": "multiple-choice", "options": ["6", "7", "9", "18"], "answer": "9", "teks": "3.8A", "skill": "data-analysis" },
+    { "id": "3-m-23", "text": "Which unit would you use to measure the WEIGHT of a watermelon?", "type": "multiple-choice", "options": ["Inches", "Gallons", "Pounds", "Degrees"], "answer": "Pounds", "teks": "3.7E", "skill": "measurement-weight" },
+    { "id": "3-m-24", "text": "Estimate: About how much is 312 × 3?", "type": "multiple-choice", "options": ["About 600", "About 900", "About 1,200", "About 1,500"], "answer": "About 900", "teks": "3.4C", "skill": "estimation-multiplication" },
+    { "id": "3-m-25", "text": "What is the ELAPSED TIME from 9:15 AM to 11:45 AM?", "type": "multiple-choice", "options": ["1 hour 30 minutes", "2 hours", "2 hours 30 minutes", "3 hours"], "answer": "2 hours 30 minutes", "teks": "3.7C", "skill": "elapsed-time" }
+  ]
+}
