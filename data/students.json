@@ -18,12 +18,14 @@
         "Social Studies": { "mastery": 0, "level": "review" }
       },
       "electives": {
-        "Art": { "enrolled": false, "course": "", "mastery": 0 },
-        "Music": { "enrolled": false, "course": "", "mastery": 0 },
+        "Art History": { "enrolled": false, "course": "", "mastery": 0 },
+        "Composers": { "enrolled": false, "course": "", "mastery": 0 },
         "Physical Education": { "enrolled": false, "course": "", "mastery": 0 },
         "Foreign Language": { "enrolled": false, "course": "", "mastery": 0 },
         "Life Skills": { "enrolled": false, "course": "", "mastery": 0 },
-        "Technology": { "enrolled": false, "course": "", "mastery": 0 },
+        "Personal Finance": { "enrolled": false, "course": "", "mastery": 0 },
+        "Entrepreneurship": { "enrolled": false, "course": "", "mastery": 0 },
+        "Computer/Coding": { "enrolled": false, "course": "", "mastery": 0 },
         "Farm & Agriculture": { "enrolled": false, "course": "", "mastery": 0 }
       },
       "assessmentStatus": {
@@ -49,12 +51,14 @@
         "Social Studies": { "mastery": 0, "level": "review" }
       },
       "electives": {
-        "Art": { "enrolled": false, "course": "", "mastery": 0 },
-        "Music": { "enrolled": false, "course": "", "mastery": 0 },
+        "Art History": { "enrolled": false, "course": "", "mastery": 0 },
+        "Composers": { "enrolled": false, "course": "", "mastery": 0 },
         "Physical Education": { "enrolled": false, "course": "", "mastery": 0 },
         "Foreign Language": { "enrolled": false, "course": "", "mastery": 0 },
         "Life Skills": { "enrolled": false, "course": "", "mastery": 0 },
-        "Technology": { "enrolled": false, "course": "", "mastery": 0 },
+        "Personal Finance": { "enrolled": false, "course": "", "mastery": 0 },
+        "Entrepreneurship": { "enrolled": false, "course": "", "mastery": 0 },
+        "Computer/Coding": { "enrolled": false, "course": "", "mastery": 0 },
         "Farm & Agriculture": { "enrolled": false, "course": "", "mastery": 0 }
       },
       "assessmentStatus": {

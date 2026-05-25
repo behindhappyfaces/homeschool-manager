@@ -1,27 +1,28 @@
 {
   "categories": [
     {
-      "name": "Art",
+      "name": "Art History",
       "icon": "🎨",
       "courses": [
-        "Drawing & Sketching",
-        "Painting & Watercolor",
-        "Pottery & Sculpture",
-        "Photography",
-        "Mixed Media & Collage",
-        "Art History"
+        "Famous Artists & Their Works",
+        "Renaissance Art",
+        "American Art History",
+        "World Art History",
+        "Modern & Contemporary Art",
+        "Art Movements & Styles",
+        "Drawing & Painting Techniques"
       ]
     },
     {
-      "name": "Music",
+      "name": "Composers",
       "icon": "🎵",
       "courses": [
-        "Piano",
-        "Guitar",
-        "Choir & Singing",
-        "Music Theory",
-        "Drums & Percussion",
-        "Ukulele",
+        "Classical Composers",
+        "Music History",
+        "Music Theory Basics",
+        "Famous Compositions",
+        "American Folk & Country Music",
+        "Gospel & Sacred Music",
         "Music Appreciation"
       ]
     },
@@ -57,20 +58,45 @@
         "Cooking & Nutrition",
         "Sewing & Fiber Arts",
         "Home Economics",
-        "Financial Literacy & Money Skills",
         "First Aid & Safety",
-        "Gardening Basics"
+        "Gardening Basics",
+        "Home Repair & Maintenance"
       ]
     },
     {
-      "name": "Technology",
+      "name": "Personal Finance",
+      "icon": "💰",
+      "courses": [
+        "Money Management Basics",
+        "Budgeting & Saving",
+        "Banking & Checking Accounts",
+        "Investing Basics",
+        "Taxes & Income",
+        "Smart Shopping & Consumer Skills"
+      ]
+    },
+    {
+      "name": "Entrepreneurship",
+      "icon": "🚀",
+      "courses": [
+        "Starting a Business",
+        "Marketing & Advertising Basics",
+        "Farm Business & Selling",
+        "Product Development",
+        "Sales Skills & Customer Service",
+        "Business Planning"
+      ]
+    },
+    {
+      "name": "Computer/Coding",
       "icon": "💻",
       "courses": [
         "Typing & Keyboarding",
-        "Coding Basics",
+        "Coding Basics (Scratch/Python)",
         "Digital Art & Design",
         "Computer Safety & Digital Citizenship",
-        "Robotics & STEM"
+        "Robotics & STEM",
+        "Spreadsheets & Word Processing"
       ]
     },
     {
