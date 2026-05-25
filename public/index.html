@@ -23,6 +23,9 @@
     <button class="nav-item" onclick="navigate('assessments')" data-page="assessments">
       <span class="icon">📝</span><span>Assessments</span>
     </button>
+    <button class="nav-item" onclick="navigate('calendar')" data-page="calendar">
+      <span class="icon">📅</span><span>Calendar</span>
+    </button>
     <button class="nav-item" onclick="navigate('progress')" data-page="progress">
       <span class="icon">📈</span><span>Progress</span>
     </button>
@@ -120,6 +123,21 @@
       <div id="assessment-home"></div>
       <div id="assessment-quiz" class="hidden"></div>
       <div id="assessment-results-view" class="hidden"></div>
+    </div>
+
+    <!-- CALENDAR -->
+    <div id="page-calendar" class="page">
+      <div class="page-header">
+        <div>
+          <div class="page-title">📅 Calendar</div>
+          <div class="page-subtitle">School year schedule, chores, routines &amp; rewards</div>
+        </div>
+      </div>
+      <div id="cal-stars"></div>
+      <div class="card" style="padding:16px">
+        <div id="cal-grid"></div>
+      </div>
+      <div id="cal-day-panel" class="cal-day-panel hidden"></div>
     </div>
 
     <!-- PROGRESS -->
@@ -260,6 +278,94 @@
         <button class="btn btn-secondary" onclick="closeModal('complete-modal')">Cancel</button>
       </div>
     </div>
+  </div>
+</div>
+
+<!-- ADD/EDIT CALENDAR ITEM MODAL -->
+<div class="modal-overlay" id="cal-item-modal">
+  <div class="modal" style="max-width:560px">
+    <div class="modal-header">
+      <div class="modal-title" id="cal-modal-title-el">Add Calendar Item</div>
+      <button class="modal-close" onclick="closeModal('cal-item-modal')">✕</button>
+    </div>
+    <form onsubmit="submitCalItem(event)">
+      <input type="hidden" id="cal-modal-id" />
+      <div class="form-group">
+        <label class="form-label">Title</label>
+        <input class="form-input" type="text" id="cal-modal-title" required placeholder="e.g. Morning Chores" />
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div class="form-group">
+          <label class="form-label">Type</label>
+          <select class="form-select" id="cal-modal-type">
+            <option value="routine">🌅 Routine</option>
+            <option value="chore">🧹 Chore</option>
+            <option value="academic">📚 Academic</option>
+            <option value="extracurricular">🏃 Extracurricular</option>
+            <option value="work">💼 Work</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Assigned To</label>
+          <select class="form-select" id="cal-modal-person"></select>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div class="form-group" id="cal-date-wrap">
+          <label class="form-label">Date</label>
+          <input class="form-input" type="date" id="cal-modal-date" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Time (optional)</label>
+          <input class="form-input" type="time" id="cal-modal-time" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Notes (optional)</label>
+        <textarea class="form-textarea" id="cal-modal-notes" style="min-height:56px"></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label">⭐ Stars for completing</label>
+        <select class="form-select" id="cal-modal-starvalue">
+          <option value="0">0 — No stars (informational)</option>
+          <option value="1" selected>⭐ 1 star</option>
+          <option value="2">⭐⭐ 2 stars</option>
+          <option value="3">⭐⭐⭐ 3 stars</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label style="display:flex;align-items:center;gap:8px;cursor:pointer">
+          <input type="checkbox" id="cal-modal-recurring" onchange="toggleCalRecurring()" />
+          <span class="form-label" style="margin:0">Repeating / Recurring</span>
+        </label>
+      </div>
+      <div id="cal-modal-recurring-opts" class="hidden" style="background:var(--surface2);border-radius:10px;padding:16px;margin-bottom:16px">
+        <div class="form-label" style="margin-bottom:8px">Repeat on:</div>
+        <div style="display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap">
+          <label style="display:flex;align-items:center;gap:4px;font-size:13px;cursor:pointer"><input type="checkbox" id="cal-day-0" /> Sun</label>
+          <label style="display:flex;align-items:center;gap:4px;font-size:13px;cursor:pointer"><input type="checkbox" id="cal-day-1" /> Mon</label>
+          <label style="display:flex;align-items:center;gap:4px;font-size:13px;cursor:pointer"><input type="checkbox" id="cal-day-2" /> Tue</label>
+          <label style="display:flex;align-items:center;gap:4px;font-size:13px;cursor:pointer"><input type="checkbox" id="cal-day-3" /> Wed</label>
+          <label style="display:flex;align-items:center;gap:4px;font-size:13px;cursor:pointer"><input type="checkbox" id="cal-day-4" /> Thu</label>
+          <label style="display:flex;align-items:center;gap:4px;font-size:13px;cursor:pointer"><input type="checkbox" id="cal-day-5" /> Fri</label>
+          <label style="display:flex;align-items:center;gap:4px;font-size:13px;cursor:pointer"><input type="checkbox" id="cal-day-6" /> Sat</label>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <div class="form-group" style="margin:0">
+            <label class="form-label">Start Date</label>
+            <input class="form-input" type="date" id="cal-modal-rec-start" />
+          </div>
+          <div class="form-group" style="margin:0">
+            <label class="form-label">End Date</label>
+            <input class="form-input" type="date" id="cal-modal-rec-end" />
+          </div>
+        </div>
+      </div>
+      <div class="flex gap-3">
+        <button type="submit" class="btn btn-primary">Save Item</button>
+        <button type="button" class="btn btn-secondary" onclick="closeModal('cal-item-modal')">Cancel</button>
+      </div>
+    </form>
   </div>
 </div>
 

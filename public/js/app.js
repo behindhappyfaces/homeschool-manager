@@ -4,6 +4,13 @@ let currentCompleteId = null;
 let currentAssessment = null;
 let assessmentAnswers = {};
 
+// Calendar state
+let calCurrentMonth = new Date();
+let calSelectedDate = null;
+let calPersonFilter = 'all';
+let calItems = [];
+let calPersons = [];
+
 // Escape HTML to prevent XSS from user-entered content
 function h(str) {
   return String(str)
@@ -34,6 +41,7 @@ function navigate(page) {
   if (page === 'students') loadStudentDetail();
   if (page === 'assignments') loadAssignments();
   if (page === 'assessments') loadAssessmentHome();
+  if (page === 'calendar') loadCalendar();
   if (page === 'progress') loadProgress();
   if (page === 'ai-tools') loadAITools();
 }
@@ -802,6 +810,300 @@ function printDailyPack() {
 
 // Add a subjects route for client (not strictly needed but prevents 404 noise)
 fetch('/api/subjects').catch(() => {});
+
+// ── Calendar ────────────────────────────────────────────────
+
+const CAL_TYPE_ICONS = { routine:'🌅', chore:'🧹', academic:'📚', extracurricular:'🏃', work:'💼' };
+const CAL_TYPE_LABELS = { routine:'Routine', chore:'Chore', academic:'Academic', extracurricular:'Extracurricular', work:'Work' };
+const CAL_MONTH_NAMES = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+function calPersonColor(id) { return (calPersons.find(p => p.id === id) || {}).color || '#8b90b8'; }
+function calPersonEmoji(id) { return (calPersons.find(p => p.id === id) || {}).emoji || '👤'; }
+function calPersonLabel(id) { return (calPersons.find(p => p.id === id) || {}).label || id; }
+
+function calAddDays(dateStr, n) {
+  const d = new Date(dateStr + 'T12:00:00');
+  d.setDate(d.getDate() + n);
+  return d.toISOString().split('T')[0];
+}
+
+async function loadCalendar() {
+  const year = calCurrentMonth.getFullYear();
+  const month = calCurrentMonth.getMonth();
+  const firstDay = new Date(year, month, 1);
+  const lastDay  = new Date(year, month + 1, 0);
+  const gridStart = new Date(firstDay);
+  gridStart.setDate(firstDay.getDate() - firstDay.getDay());
+  const gridEnd = new Date(lastDay);
+  gridEnd.setDate(lastDay.getDate() + (6 - lastDay.getDay()));
+  const start = gridStart.toISOString().split('T')[0];
+  const end   = gridEnd.toISOString().split('T')[0];
+
+  const { items, persons } = await api(`/calendar?start=${start}&end=${end}&person=${calPersonFilter}`);
+  calItems   = items;
+  calPersons = persons;
+
+  renderCalGrid(gridStart, gridEnd, year, month);
+  renderCalStars();
+  if (calSelectedDate) renderDayPanel(calSelectedDate);
+}
+
+function renderCalGrid(gridStart, gridEnd, displayYear, displayMonth) {
+  const byDate = {};
+  for (const item of calItems) {
+    (byDate[item.occurrenceDate] = byDate[item.occurrenceDate] || []).push(item);
+  }
+  const today = new Date().toISOString().split('T')[0];
+  const cur = new Date(gridStart);
+  let daysHtml = '';
+  while (cur.toISOString().split('T')[0] <= gridEnd.toISOString().split('T')[0]) {
+    const ds = cur.toISOString().split('T')[0];
+    const isThisMonth = cur.getMonth() === displayMonth;
+    const isToday     = ds === today;
+    const isSelected  = ds === calSelectedDate;
+    const dayItems    = byDate[ds] || [];
+    const chips = dayItems.slice(0, 3).map(it => {
+      const c = calPersonColor(it.assignedTo);
+      const icon = CAL_TYPE_ICONS[it.type] || '•';
+      const lineThru = it.starred ? 'opacity:0.55;' : '';
+      return `<div class="cal-chip" style="background:${c}22;border-left:3px solid ${c};${lineThru}">${it.starred ? '⭐' : icon} ${h(it.title.length > 13 ? it.title.slice(0,13) + '…' : it.title)}</div>`;
+    }).join('');
+    const more = dayItems.length > 3 ? `<div class="cal-chip-more">+${dayItems.length - 3} more</div>` : '';
+    daysHtml += `<div class="cal-day${isThisMonth ? '' : ' cal-day-other'}${isToday ? ' cal-day-today' : ''}${isSelected ? ' cal-day-selected' : ''}" data-date="${ds}" onclick="selectCalDay('${ds}')"><div class="cal-day-num">${cur.getDate()}</div>${chips}${more}</div>`;
+    cur.setDate(cur.getDate() + 1);
+  }
+
+  const personBtns = `<button class="cal-person-btn ${calPersonFilter === 'all' ? 'active' : ''}" onclick="setCalPerson('all')">All</button>` +
+    calPersons.map(p => `<button class="cal-person-btn ${calPersonFilter === p.id ? 'active' : ''}" onclick="setCalPerson('${h(p.id)}')">${h(p.emoji)} ${h(p.label)}</button>`).join('');
+
+  const printUrl = calSelectedDate
+    ? `/print/calendar/week?date=${calSelectedDate}&person=${calPersonFilter}`
+    : `/print/calendar/week?date=${new Date().toISOString().split('T')[0]}&person=${calPersonFilter}`;
+
+  document.getElementById('cal-grid').innerHTML = `
+    <div class="cal-header-row">
+      <div class="cal-month-nav">
+        <button class="btn btn-secondary btn-sm" onclick="calNavMonth(-1)">‹</button>
+        <div class="cal-month-title">${CAL_MONTH_NAMES[displayMonth]} ${displayYear}</div>
+        <button class="btn btn-secondary btn-sm" onclick="calNavMonth(1)">›</button>
+      </div>
+      <div class="flex gap-2">
+        <button class="btn btn-primary btn-sm" onclick="openAddCalItem(null)">+ Add Item</button>
+        <a class="btn btn-secondary btn-sm" href="${printUrl}" target="_blank" style="text-decoration:none">🖨️ Print Week</a>
+      </div>
+    </div>
+    <div class="cal-person-filter">${personBtns}</div>
+    <div class="cal-grid-weekdays"><div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div></div>
+    <div class="cal-grid-days">${daysHtml}</div>
+  `;
+}
+
+async function renderCalStars() {
+  const stars = await api('/calendar/stars');
+  const entries = Object.entries(stars);
+  if (!entries.length) return;
+  document.getElementById('cal-stars').innerHTML = `
+    <div class="cal-stars-bar">
+      <span class="font-bold text-sm" style="color:var(--yellow)">⭐ Star Bank</span>
+      ${entries.map(([, d]) => `
+        <div class="cal-star-item">
+          <span>${h(d.emoji)} ${h(d.label)}</span>
+          <span class="cal-star-count">${d.total}</span>
+          <span class="text-muted text-sm">total</span>
+          <span class="cal-star-pips">${'⭐'.repeat(Math.min(d.thisWeek, 7))}</span>
+          <span class="text-muted text-sm">(${d.thisWeek} this week)</span>
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
+function renderDayPanel(dateStr) {
+  calSelectedDate = dateStr;
+  const d = new Date(dateStr + 'T12:00:00');
+  const dayLabel = d.toLocaleDateString('en-US', { weekday:'long', month:'long', day:'numeric' });
+  const dayItems = calItems.filter(i => i.occurrenceDate === dateStr);
+
+  const rows = dayItems.map(item => {
+    const c = calPersonColor(item.assignedTo);
+    const icon = CAL_TYPE_ICONS[item.type] || '•';
+    return `
+      <div class="cal-item-row ${item.starred ? 'cal-item-done' : ''}">
+        <div class="cal-item-icon">${icon}</div>
+        <div class="cal-item-body">
+          <div class="cal-item-title">${item.starred ? `<span style="text-decoration:line-through;color:var(--text-muted)">${h(item.title)}</span>` : h(item.title)}</div>
+          <div class="cal-item-meta">
+            <span class="cal-person-chip" style="background:${c}22;color:${c}">${h(calPersonEmoji(item.assignedTo))} ${h(calPersonLabel(item.assignedTo))}</span>
+            ${item.time ? `<span class="cal-type-chip">${h(item.time)}</span>` : ''}
+            <span class="cal-type-chip">${h(CAL_TYPE_LABELS[item.type] || item.type)}</span>
+            ${item.starValue > 0 ? `<span class="cal-type-chip" style="color:var(--yellow)">${'⭐'.repeat(item.starValue)}</span>` : ''}
+          </div>
+          ${item.notes ? `<div class="text-muted text-sm" style="margin-top:4px">${h(item.notes)}</div>` : ''}
+        </div>
+        <div class="cal-item-actions">
+          <button class="cal-star-btn ${item.starred ? 'starred' : ''}"
+            onclick="toggleCalStar('${h(item.id)}','${h(dateStr)}')"
+            title="${item.starred ? 'Remove star' : 'Mark complete & earn ' + (item.starValue || 0) + ' star(s)'}">
+            ${item.starred ? '⭐' : '☆'}
+          </button>
+          <button class="btn btn-secondary btn-sm" onclick="openEditCalItem('${h(item.id)}')" style="padding:4px 8px;font-size:12px">✏️</button>
+          <button class="btn btn-secondary btn-sm" onclick="deleteCalItem('${h(item.id)}')" style="padding:4px 8px;font-size:12px;color:var(--red)">✕</button>
+        </div>
+      </div>
+    `;
+  }).join('') || `<div class="text-muted text-sm" style="padding:24px;text-align:center">No items for this day.<br><button class="btn btn-primary btn-sm" style="margin-top:10px" onclick="openAddCalItem('${dateStr}')">+ Add Item</button></div>`;
+
+  document.getElementById('cal-day-panel').innerHTML = `
+    <div class="cal-day-panel-header">
+      <div class="cal-day-panel-title">${h(dayLabel)}</div>
+      <div class="flex gap-2">
+        <button class="btn btn-primary btn-sm" onclick="openAddCalItem('${h(dateStr)}')">+ Add</button>
+        <a class="btn btn-secondary btn-sm" href="/print/calendar/week?date=${h(dateStr)}&person=${calPersonFilter}" target="_blank" style="text-decoration:none">🖨️</a>
+        <button class="btn btn-secondary btn-sm" onclick="closeDayPanel()">✕</button>
+      </div>
+    </div>
+    ${rows}
+  `;
+  document.getElementById('cal-day-panel').classList.remove('hidden');
+}
+
+function selectCalDay(dateStr) {
+  calSelectedDate = dateStr;
+  const year = calCurrentMonth.getFullYear();
+  const month = calCurrentMonth.getMonth();
+  const firstDay = new Date(year, month, 1);
+  const lastDay  = new Date(year, month + 1, 0);
+  const gridStart = new Date(firstDay);
+  gridStart.setDate(firstDay.getDate() - firstDay.getDay());
+  const gridEnd = new Date(lastDay);
+  gridEnd.setDate(lastDay.getDate() + (6 - lastDay.getDay()));
+  renderCalGrid(gridStart, gridEnd, year, month);
+  renderDayPanel(dateStr);
+}
+
+function closeDayPanel() {
+  calSelectedDate = null;
+  document.getElementById('cal-day-panel').classList.add('hidden');
+  loadCalendar();
+}
+
+function calNavMonth(dir) {
+  calCurrentMonth = new Date(calCurrentMonth.getFullYear(), calCurrentMonth.getMonth() + dir, 1);
+  calSelectedDate = null;
+  document.getElementById('cal-day-panel').classList.add('hidden');
+  loadCalendar();
+}
+
+function setCalPerson(personId) {
+  calPersonFilter = personId;
+  loadCalendar();
+}
+
+async function toggleCalStar(itemId, dateStr) {
+  await api('/calendar/complete', {
+    method: 'POST',
+    body: JSON.stringify({ itemId, date: dateStr })
+  });
+  await loadCalendar();
+}
+
+function openAddCalItem(prefillDate) {
+  document.getElementById('cal-modal-id').value = '';
+  document.getElementById('cal-modal-title').value = '';
+  document.getElementById('cal-modal-type').value = 'routine';
+  document.getElementById('cal-modal-time').value = '';
+  document.getElementById('cal-modal-notes').value = '';
+  document.getElementById('cal-modal-starvalue').value = '1';
+  document.getElementById('cal-modal-recurring').checked = false;
+  document.getElementById('cal-modal-recurring-opts').classList.add('hidden');
+  document.getElementById('cal-date-wrap').classList.remove('hidden');
+  document.getElementById('cal-modal-date').value = prefillDate || new Date().toISOString().split('T')[0];
+  ['0','1','2','3','4','5','6'].forEach(d => { const el = document.getElementById(`cal-day-${d}`); if (el) el.checked = false; });
+  document.getElementById('cal-modal-rec-start').value = '';
+  document.getElementById('cal-modal-rec-end').value = '';
+
+  const sel = document.getElementById('cal-modal-person');
+  sel.innerHTML = calPersons.map(p => `<option value="${h(p.id)}">${h(p.emoji)} ${h(p.label)}</option>`).join('');
+
+  document.getElementById('cal-modal-title-el').textContent = 'Add Calendar Item';
+  document.getElementById('cal-item-modal').classList.add('open');
+}
+
+function openEditCalItem(itemId) {
+  const item = calItems.find(i => i.id === itemId);
+  if (!item) return;
+
+  document.getElementById('cal-modal-id').value = item.id;
+  document.getElementById('cal-modal-title').value = item.title;
+  document.getElementById('cal-modal-type').value = item.type;
+  document.getElementById('cal-modal-time').value = item.time || '';
+  document.getElementById('cal-modal-notes').value = item.notes || '';
+  document.getElementById('cal-modal-starvalue').value = String(item.starValue ?? 1);
+  document.getElementById('cal-modal-date').value = item.date || item.occurrenceDate || '';
+  document.getElementById('cal-modal-recurring').checked = !!item.recurring;
+
+  const sel = document.getElementById('cal-modal-person');
+  sel.innerHTML = calPersons.map(p => `<option value="${h(p.id)}" ${p.id === item.assignedTo ? 'selected' : ''}>${h(p.emoji)} ${h(p.label)}</option>`).join('');
+
+  if (item.recurring) {
+    document.getElementById('cal-modal-recurring-opts').classList.remove('hidden');
+    document.getElementById('cal-date-wrap').classList.add('hidden');
+    const days = item.recurringDays || [];
+    ['0','1','2','3','4','5','6'].forEach(d => { const el = document.getElementById(`cal-day-${d}`); if (el) el.checked = days.includes(Number(d)); });
+    document.getElementById('cal-modal-rec-start').value = item.recurringStartDate || '';
+    document.getElementById('cal-modal-rec-end').value   = item.recurringEndDate   || '';
+  } else {
+    document.getElementById('cal-modal-recurring-opts').classList.add('hidden');
+    document.getElementById('cal-date-wrap').classList.remove('hidden');
+  }
+
+  document.getElementById('cal-modal-title-el').textContent = 'Edit Calendar Item';
+  document.getElementById('cal-item-modal').classList.add('open');
+}
+
+async function submitCalItem(e) {
+  e.preventDefault();
+  const id = document.getElementById('cal-modal-id').value;
+  const isRecurring = document.getElementById('cal-modal-recurring').checked;
+  const recurringDays = ['0','1','2','3','4','5','6']
+    .filter(d => document.getElementById(`cal-day-${d}`)?.checked)
+    .map(Number);
+
+  const payload = {
+    title: document.getElementById('cal-modal-title').value,
+    type:  document.getElementById('cal-modal-type').value,
+    assignedTo: document.getElementById('cal-modal-person').value,
+    date: isRecurring ? null : document.getElementById('cal-modal-date').value,
+    time: document.getElementById('cal-modal-time').value,
+    notes: document.getElementById('cal-modal-notes').value,
+    recurring: isRecurring,
+    recurringDays,
+    recurringStartDate: isRecurring ? document.getElementById('cal-modal-rec-start').value || null : null,
+    recurringEndDate:   isRecurring ? document.getElementById('cal-modal-rec-end').value   || null : null,
+    starValue: Number(document.getElementById('cal-modal-starvalue').value) || 0
+  };
+
+  if (id) {
+    await api(`/calendar/${encodeURIComponent(id)}`, { method: 'PUT', body: JSON.stringify(payload) });
+  } else {
+    await api('/calendar', { method: 'POST', body: JSON.stringify(payload) });
+  }
+  closeModal('cal-item-modal');
+  await loadCalendar();
+  if (calSelectedDate) renderDayPanel(calSelectedDate);
+}
+
+async function deleteCalItem(itemId) {
+  if (!confirm('Delete this item and all its completions? This removes it from all dates.')) return;
+  await api(`/calendar/${encodeURIComponent(itemId)}`, { method: 'DELETE' });
+  await loadCalendar();
+}
+
+function toggleCalRecurring() {
+  const on = document.getElementById('cal-modal-recurring').checked;
+  document.getElementById('cal-modal-recurring-opts').classList.toggle('hidden', !on);
+  document.getElementById('cal-date-wrap').classList.toggle('hidden', on);
+}
 
 // Init
 loadDashboard();

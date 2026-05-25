@@ -3,6 +3,7 @@ const router = express.Router();
 const path = require('path');
 const fs = require('fs');
 const { read, DATA_DIR } = require('../utils/dataStore');
+const { expandCalItems, addDays } = require('../utils/calendarExpand');
 
 const FARM_NAME = 'Heart of Texas Organics Homeschool';
 
@@ -312,6 +313,106 @@ router.get('/assessment/:grade', (req, res) => {
     `Grade ${grade} Assessment — ${studentName}`,
     `Print: Grade ${grade} Assessment — ${studentName}`,
     content
+  ));
+});
+
+// ── Calendar weekly planner print ────────────────────────
+router.get('/calendar/week', (req, res) => {
+  const { date = new Date().toISOString().split('T')[0], person = 'all' } = req.query;
+
+  // Find Monday of the week containing date
+  const ref = new Date(date + 'T12:00:00');
+  const dow = ref.getDay(); // 0=Sun
+  const mondayOffset = dow === 0 ? -6 : 1 - dow;
+  const monday = new Date(ref);
+  monday.setDate(ref.getDate() + mondayOffset);
+  const weekStart = monday.toISOString().split('T')[0];
+  const weekEnd = addDays(weekStart, 6);
+
+  const data = read('calendar.json');
+  const personsToShow = person === 'all' ? data.persons : data.persons.filter(p => p.id === person);
+  const items = expandCalItems(data.items, data.completions, weekStart, weekEnd, person);
+
+  const DAY_NAMES = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
+  const TYPE_ICONS = { routine: '🌅', chore: '🧹', academic: '📚', extracurricular: '🏃', work: '💼' };
+
+  function weekDateLabel(offset) {
+    const d = new Date(weekStart + 'T12:00:00');
+    d.setDate(d.getDate() + offset);
+    return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+  }
+
+  const pages = personsToShow.map(person => {
+    const personItems = items.filter(i => i.assignedTo === person.id || i.assignedTo === 'family');
+
+    const dayRows = DAY_NAMES.map((dayName, i) => {
+      const dayDate = addDays(weekStart, i);
+      const dayItems = personItems.filter(it => it.occurrenceDate === dayDate);
+      if (dayItems.length === 0) return '';
+
+      const itemRows = dayItems.map(it => `
+        <tr>
+          <td style="width:70px;color:#666;font-size:13px">${h(it.time || '—')}</td>
+          <td>${h(TYPE_ICONS[it.type] || '•')} ${h(it.title)}${it.notes ? `<div style="font-size:12px;color:#888;margin-top:2px">${h(it.notes)}</div>` : ''}</td>
+          <td style="width:100px;font-size:12px;color:#777;text-transform:capitalize">${h(it.type)}</td>
+          <td style="width:48px;text-align:center;font-size:20px">${it.starred ? '⭐' : '☆'}</td>
+        </tr>
+      `).join('');
+
+      return `
+        <tr style="background:#f5f5f5">
+          <td colspan="4" style="padding:8px 10px;font-weight:bold;font-size:14px;border-top:2px solid #ccc">
+            ${h(dayName)}, ${h(weekDateLabel(i))}
+          </td>
+        </tr>
+        ${itemRows}
+      `;
+    }).join('');
+
+    const totalStars = personItems.filter(i => i.starred && i.starValue > 0).reduce((s, i) => s + (i.starValue || 1), 0);
+    const possibleStars = personItems.filter(i => i.starValue > 0).reduce((s, i) => s + (i.starValue || 1), 0);
+
+    return `
+      <div class="print-page">
+        <div class="print-header">
+          <div class="print-farm">${h(FARM_NAME)}</div>
+          <div class="print-title">${h(person.emoji)} ${h(person.label)} — Weekly Planner</div>
+          <div class="print-subtitle">Week of ${h(weekDateLabel(0))} – ${h(weekDateLabel(6))}, ${new Date(weekStart + 'T12:00:00').getFullYear()}</div>
+        </div>
+        ${person.id.startsWith('student-') ? `
+          <div style="display:flex;gap:20px;margin-bottom:16px;font-size:14px;align-items:center">
+            <span>⭐ Stars Earned: <strong>${totalStars}</strong> / ${possibleStars} possible this week</span>
+            <span style="font-size:22px">${'⭐'.repeat(Math.min(totalStars,10))}${'☆'.repeat(Math.max(0,Math.min(possibleStars,10)-totalStars))}</span>
+          </div>
+        ` : ''}
+        <table class="cover-table" style="font-size:14px">
+          <thead>
+            <tr>
+              <th style="width:70px">Time</th>
+              <th>Task</th>
+              <th style="width:100px">Type</th>
+              <th style="width:48px;text-align:center">⭐</th>
+            </tr>
+          </thead>
+          <tbody>${dayRows || '<tr><td colspan="4" style="text-align:center;color:#aaa;padding:20px">No items this week</td></tr>'}</tbody>
+        </table>
+        ${person.id.startsWith('student-') ? `
+          <div style="margin-top:24px;border:2px solid #000;border-radius:8px;padding:14px;display:inline-block;font-size:13px">
+            <strong>Reward Progress:</strong>&nbsp;&nbsp;
+            ⭐ Earned this week: ______ &nbsp;&nbsp;
+            🏆 Total stars: _______ &nbsp;&nbsp;
+            Reward goal: _______________________
+          </div>
+        ` : ''}
+      </div>
+    `;
+  }).join('');
+
+  const weekLabel = `${weekDateLabel(0)} – ${weekDateLabel(6)}`;
+  res.send(layout(
+    `Weekly Planner — ${weekLabel}`,
+    `Weekly Planner — ${weekLabel}${person !== 'all' ? ` · ${personsToShow[0]?.label || ''}` : ''}`,
+    pages || '<div class="print-page"><p style="text-align:center;color:#aaa;padding:40px">No items to display.</p></div>'
   ));
 });
 

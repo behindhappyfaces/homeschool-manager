@@ -14,6 +14,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api/students', require('./src/routes/students'));
 app.use('/api/assignments', require('./src/routes/assignments'));
 app.use('/api/assessments', require('./src/routes/assessments'));
+app.use('/api/calendar', require('./src/routes/calendar'));
 app.use('/api/ai', require('./src/routes/ai'));
 app.use('/print', require('./src/routes/print'));
 
