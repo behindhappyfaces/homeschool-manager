@@ -8,6 +8,12 @@ router.get('/', (req, res) => {
   res.json(students);
 });
 
+// Must be before /:id to avoid being caught as a student ID lookup
+router.get('/electives/categories', (req, res) => {
+  const data = read('electives.json');
+  res.json(data.categories);
+});
+
 router.get('/:id', (req, res) => {
   const { students } = read('students.json');
   const student = students.find(s => s.id === req.params.id);
@@ -36,12 +42,6 @@ router.put('/:id/mastery', (req, res) => {
   write('students.json', data);
   syncStudentNote(data.students[idx]);
   res.json(data.students[idx]);
-});
-
-// GET elective categories
-router.get('/electives/categories', (req, res) => {
-  const data = read('electives.json');
-  res.json(data.categories);
 });
 
 // PUT save a student's elective enrollment + course selection
