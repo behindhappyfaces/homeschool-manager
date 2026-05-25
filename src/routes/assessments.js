@@ -57,6 +57,14 @@ router.post('/submit', async (req, res) => {
 
   const score = Math.round((correct / assessment.questions.length) * 100);
 
+  // STAAR-aligned Texas grade-level determination
+  function gradeLevel(pct) {
+    if (pct >= 80) return { level: 'Masters Grade Level',     emoji: '🏆', color: '#6c8aff' };
+    if (pct >= 65) return { level: 'Meets Grade Level',       emoji: '✅', color: '#4ade80' };
+    if (pct >= 50) return { level: 'Approaches Grade Level',  emoji: '📈', color: '#fbbf24' };
+    return         { level: 'Did Not Meet Grade Level',        emoji: '⚠️', color: '#f87171' };
+  }
+
   const result = {
     id: `r-${Date.now()}`,
     studentId,
@@ -67,6 +75,7 @@ router.post('/submit', async (req, res) => {
     score,
     correct,
     total: assessment.questions.length,
+    gradeLevel: gradeLevel(score),
     questions: questionResults,
     completedAt: new Date().toISOString()
   };
@@ -94,9 +103,15 @@ router.post('/submit', async (req, res) => {
     write('students.json', studentsData);
   }
 
-  const aiFeedback = await generateAssessmentFeedback(student.name, `${grade} ${SUBJECT_LABELS[subject]}`, {
-    sections: [{ subject: SUBJECT_LABELS[subject], score, correct, total: assessment.questions.length }]
-  });
+  let aiFeedback;
+  try {
+    aiFeedback = await generateAssessmentFeedback(student.name, `${grade} ${SUBJECT_LABELS[subject]}`, {
+      sections: [{ subject: SUBJECT_LABELS[subject], score, correct, total: assessment.questions.length }]
+    });
+  } catch (err) {
+    console.error('AI feedback error:', err.message);
+    aiFeedback = { available: false, message: 'AI feedback unavailable — check your API key and try again.' };
+  }
 
   res.json({ result, aiFeedback });
 });

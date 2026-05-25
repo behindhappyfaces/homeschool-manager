@@ -620,21 +620,49 @@ function showAssessmentResults(result, aiFeedback) {
     </div>
   `).join('') || '<div class="text-muted text-sm">Perfect score — all correct!</div>';
 
+  const gl = result.gradeLevel || {};
+  const glEmoji  = gl.emoji  || (result.score >= 65 ? '✅' : '⚠️');
+  const glLevel  = gl.level  || getMasteryLabel(result.score);
+  const glColor  = gl.color  || getMasteryColor(result.score);
+  const gradeNum = result.grade === 'k' ? 'K' : result.grade;
+
   el.innerHTML = `
     <div class="page-header">
       <div>
         <div class="page-title">Assessment Results</div>
-        <div class="page-subtitle">${h(result.studentName)} · ${h(result.subjectLabel || result.subject)} · Grade ${h(result.grade)}</div>
+        <div class="page-subtitle">${h(result.studentName)} · ${h(result.subjectLabel || result.subject)} · Grade ${h(gradeNum)}</div>
       </div>
       <button class="btn btn-secondary" onclick="loadAssessmentHome()">← Back</button>
     </div>
+
+    <div class="card mb-4" style="border-color:${glColor};background:linear-gradient(135deg,${glColor}11,${glColor}06)">
+      <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+        <div style="font-size:40px">${h(glEmoji)}</div>
+        <div>
+          <div style="font-size:22px;font-weight:800;color:${glColor}">${h(glLevel)}</div>
+          <div class="text-muted text-sm">Grade ${h(gradeNum)} ${h(result.subjectLabel || result.subject)} · STAAR-aligned benchmark</div>
+        </div>
+        <div style="margin-left:auto;text-align:right">
+          <div style="font-size:42px;font-weight:900;color:${glColor};line-height:1">${result.score}%</div>
+          <div class="text-muted text-sm">${result.correct} of ${result.total} correct</div>
+        </div>
+      </div>
+      <div style="margin-top:14px;padding-top:14px;border-top:1px solid ${glColor}33;display:flex;gap:12px;font-size:12px;flex-wrap:wrap">
+        <span style="color:${result.score >= 80 ? '#6c8aff' : '#8b90b8'}">🏆 Masters (80%+)</span>
+        <span style="color:${result.score >= 65 && result.score < 80 ? '#4ade80' : '#8b90b8'}">✅ Meets (65–79%)</span>
+        <span style="color:${result.score >= 50 && result.score < 65 ? '#fbbf24' : '#8b90b8'}">📈 Approaches (50–64%)</span>
+        <span style="color:${result.score < 50 ? '#f87171' : '#8b90b8'}">⚠️ Did Not Meet (&lt;50%)</span>
+      </div>
+    </div>
+
     <div class="stats-row" style="grid-template-columns:repeat(3,1fr)">
       <div class="stat-card"><div class="stat-value" style="color:${getMasteryColor(result.score)}">${result.score}%</div><div class="stat-label">Score</div></div>
       <div class="stat-card"><div class="stat-value">${result.correct} / ${result.total}</div><div class="stat-label">Correct</div></div>
-      <div class="stat-card"><div class="stat-value"><span class="badge ${getBadgeClass(result.score)}">${getMasteryLabel(result.score)}</span></div><div class="stat-label">Level</div></div>
+      <div class="stat-card"><div class="stat-value">${result.total - result.correct}</div><div class="stat-label">To Review</div></div>
     </div>
+
     <div class="card mt-4">
-      <div class="section-title mb-3">Missed Questions</div>
+      <div class="section-title mb-3">Questions to Review</div>
       ${wrongItems}
     </div>
     <div class="ai-panel mt-4">
